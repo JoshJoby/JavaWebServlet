@@ -194,9 +194,10 @@
 															<del>$ 399.00</del>
 														</p>
 													</div>
-													<button class="btn-cart welcome-add-cart" onclick="window.location.href='#'">
+													
+													<button class="btn-cart welcome-add-cart" onclick="location.href='prod.jsp'">
 														<span class="lnr lnr-plus-circle"></span>
-														add <span>to</span> cart
+														add <span>to</span> Caaaart
 													</button>
 													<button class="btn-cart welcome-add-cart welcome-more-info" onclick="window.location.href='#'">
 														more info
@@ -307,13 +308,13 @@
 				                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-menu">
 				                    <i class="fa fa-bars"></i>
 				                </button>
-				                <a class="navbar-brand" href="index.html">Chilli<span>Gobi!</span></a>
+				                <a class="navbar-brand" href="home.jsp">Chilli<span>Gobi!</span></a>
 
 				            </div><!--/.navbar-header-->
 				            <!-- End Header Navigation -->
 
 				            <!-- Collect the nav links, forms, and other content for toggling -->
-				            <div class="collapse navbar-collapse menu-ui-design" id="navbar-menu">
+				            <div class="collapse navbar-collapse menu-ui-design" id="navbar-menu" >
 				                <ul class="nav navbar-nav navbar-center" data-in="fadeInDown" data-out="fadeOutUp">
 				                    <li class=" scroll active"><a href="#home">home</a></li>
 				                    <li class="scroll"><a href="#new-arrivals">new arrival</a></li>
