@@ -63,7 +63,12 @@
 		<!--[if lte IE 9]>
             <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience and security.</p>
         <![endif]-->
-		
+         <%
+			if((request.getParameter("btnLogOut") == null) ? false : true){
+				request.setAttribute("isAuth", false);
+				SignInServlet.isLoggedIn=false;
+			}
+		%>	
 		
 	
 		<!--welcome-hero start -->
@@ -245,19 +250,35 @@
 				            <div class="attr-nav">
 				                <ul>
 				                	<li class="search">
-				                		<a href="#"><span class="lnr lnr-magnifier"></span></a>
+				                		<a href="#">
+				                		<p style="font-size: 12px">Search</p>
+				                		</a>
 				                	</li><!--/.search-->				                	
 				                	<li class="nav-setting">
-									<a href="SignUp.jsp" class="addMore" title="Sign in!"><div class="lnr lnr-user"></div></a>
+									<a href="SignUp.jsp" class="addMore" title="Sign in!"><p style="font-size: 12px">Sign in</p></a>
 				                	</li><!--/.search-->
 				                	<li class="nav-setting">
-				                	<%if((boolean)request.getAttribute("isAuth")){%>
-									<a href="home.jsp" class="addMore" title="Log out!" onclick=<%request.setAttribute("isAuth", false); SignInServlet.isLoggedIn=false;%>><div class="lnr lnr-moon"></div></a>
-				                	 <%}%>
-				                	</li><!--/.search-->				             
+				                	
+				                	<%if((boolean)request.getAttribute("isAuth")){%>	
+				                	<div style="padding-top: 42px">						
+									<form name="logout_form" method="POST" action="home.jsp">
+									<span>
+										<input type="submit" value="Log Out" name="btnLogOut" style="border:none; background: #f8f9fd; font-size: 12px">
+									</span>
+									</form>
+									</div>	
+				                	 <%}%>	
+				                	</li><!--/.search-->
+				                	<%if(!(boolean)request.getAttribute("isAuth")){%>	
+				                	<li>
+				                			<a href="#" onclick="alert('Please log in to view cart! ')">
+				                            <p style="font-size: 12px">Cart</p>
+				                        </a>
+				                	</li>	
+				                	<%}else if((boolean)request.getAttribute("isAuth")){ %>	             
 				                    <li class="dropdown">
 				                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" >
-				                            <span class="lnr lnr-cart"></span>
+				                            <p style="font-size: 12px">Cart</p>
 											<span class="badge badge-bg-1">2</span>
 				                        </a>
 				                        <ul class="dropdown-menu cart-list s-cate">
@@ -298,7 +319,7 @@
 				                        </ul>
 				                       
 				                    </li><!--/.dropdown-->
-				                    
+				                    <%}%>
 				                </ul>
 				            </div><!--/.attr-nav-->
 				            <!-- End Atribute Navigation -->

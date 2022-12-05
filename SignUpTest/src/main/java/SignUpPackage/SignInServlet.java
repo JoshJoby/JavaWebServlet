@@ -15,7 +15,7 @@ import java.sql.SQLException;
 @WebServlet("/SignIn.jsp")
 public class SignInServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	boolean isAuth = false;
+	public static boolean isAuth;
     public static boolean isLoggedIn;
     static String userEmail;
     /**
