@@ -2,7 +2,8 @@
     pageEncoding="UTF-8"%>
 <%@page import="SignUpPackage.HomeServlet" %>
 <%@page import="SignUpPackage.SignInServlet" %>
-
+<%@page import="SignUpPackage.ProdDB"  %>
+<%ProdDB pdb = new ProdDB(); %>
 
     
 <!doctype html>
@@ -72,7 +73,7 @@
 		
 	
 		<!--welcome-hero start -->
-		<header id="home" class="welcome-hero">
+		<header id="home" class="welcome-hero" >
 
 			<div id="header-carousel" class="carousel slide carousel-fade" data-ride="carousel">
 				<!--/.carousel-indicator -->
@@ -189,14 +190,13 @@
 											<div class="single-welcome-hero">
 												<div class="welcome-hero-txt">
 													<h4>great design collection</h4>
-													<h2>valvet accent arm chair</h2>
+													<h2><%=pdb.getProdName("product1")%></h2>
 													<p>
-														Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiuiana smod tempor  ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip. 
+														<%=pdb.getProdDesc("product1")%>
 													</p>
 													<div class="packages-price">
 														<p>
-															$ 299.00
-															<del>$ 399.00</del>
+														 ₹ <%=pdb.getProdPrice("product1")%>
 														</p>
 													</div>
 													<form id="formCart" action="prod.jsp" method="get"></form>
@@ -213,7 +213,7 @@
 										<div class="col-sm-5">
 											<div class="single-welcome-hero">
 												<div class="welcome-hero-img">
-													<img src="assets/images/slider/slider3.png" alt="slider image">
+													<img src="<%=pdb.getProdImage1("product1")%>" alt="slider image">
 												</div><!--/.welcome-hero-txt-->
 											</div><!--/.single-welcome-hero-->
 										</div><!--/.col-->
@@ -354,6 +354,7 @@
 			<!-- top-area End -->
 
 		</header><!--/.welcome-hero-->
+		</div>
 		<!--welcome-hero end -->
 
 		<!--populer-products start -->
