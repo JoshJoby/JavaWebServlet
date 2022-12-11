@@ -11,7 +11,7 @@ public class UserDB {
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
 			con = DriverManager.getConnection(
-					"jdbc:mysql://localhost:3306/MVC_JOSH", "root", "root");
+					"jdbc:mysql://localhost:3306/USERDB1", "root", "root");
 			s = con.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
 			s.executeUpdate("CREATE DATABASE IF NOT EXISTS USERDB1");
 			s.executeUpdate("USE USERDB1");

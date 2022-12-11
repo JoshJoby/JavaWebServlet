@@ -199,8 +199,8 @@
 															<del>$ 399.00</del>
 														</p>
 													</div>
-													
-													<button class="btn-cart welcome-add-cart" onclick="location.href='prod.jsp'">
+													<form id="formCart" action="prod.jsp" method="get"></form>
+													<button class="btn-cart welcome-add-cart" type="submit" name="buttonProd" value="product1" form="formCart">
 														<span class="lnr lnr-plus-circle"></span>
 														add <span>to</span> Caaaart
 													</button>
@@ -964,5 +964,6 @@
         <script src="assets/js/custom.js"></script>
         
     </body>
+    
 	
 </html>

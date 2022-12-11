@@ -16,6 +16,7 @@ import SignUpPackage.SignInServlet;
 public class HomeServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	public static boolean isAuth;
+	public static String productName;
     /**
      * @see HttpServlet#HttpServlet()
      */
@@ -35,7 +36,6 @@ public class HomeServlet extends HttpServlet {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}	
-
 		response.getWriter().append("Served at: ").append(request.getContextPath());
 
 	}
@@ -46,6 +46,11 @@ public class HomeServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
+		if((request.getAttribute("buttonProd") == null) ? false : true){
+		System.out.println("Button is clicked!");
+		request.setAttribute("product", "product1");
+		}
+		else{System.out.println("Button is not clicked!");}
 		try {
 			processRequest(request, response);
 		} catch (ServletException | IOException | SQLException e) {
@@ -62,6 +67,7 @@ public class HomeServlet extends HttpServlet {
 		UserDB udb = new UserDB();
 		name = udb.getName(email);
 		System.out.print(isAuth);
+//		productName = request.getAttribute("product").toString();
 		request.setAttribute("isAuth", isAuth);
 		request.setAttribute("name", name);
 		RequestDispatcher requestDispatcher = request.getRequestDispatcher("/WEB-INF/views/home.jsp");

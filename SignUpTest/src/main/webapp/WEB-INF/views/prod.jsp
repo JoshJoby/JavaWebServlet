@@ -1,10 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@page import="SignUpPackage.SignInServlet" %>
+<%@page import="SignUpPackage.ProdDB"  %>
+<%ProdDB pdb = new ProdDB(); %>
 <!doctype html>   
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
+	<meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>amazon | Product Page</title>
@@ -40,7 +42,7 @@
         <link rel="stylesheet" href="assets/css/responsive.css">
 </head>
 <body>
-		
+
 <header style="background: #ffffff;" id="home" class="welcome-hero">
 <div id="header-carousel" class="carousel slide carousel-fade" data-ride="carousel">
 	<div class="top-area">
@@ -59,7 +61,9 @@
 				            </div>
 				        </div>
 				        <!-- End Top Search -->
-
+						<%
+							System.out.println((request.getAttribute("product").toString()));
+							%>
 				        <div class="container">            
 				            <!-- Start Atribute Navigation -->
 				            <div class="attr-nav">
@@ -167,71 +171,61 @@
 
 			</div>
 </header>
-<hr>
 
     <section id="product-info" style="margin-bottom: 5%">
 
         <div class="item-image-parent">
-            <div class="item-list-vertical">
-                <div class="thumb-box">
-                    <img src="https://i.ibb.co/VJf6fXm/thumb1.jpg" alt="thumbnail" />
+            <!--  <div class="item-list-vertical">  -->
+            <div style="padding-right: 10%">
+                <!-- <div class="thumb-box"> -->
+                <div style="padding-bottom: 20%">
+                <div style="border: thin solid black">
+                    <img src="<%=pdb.getProdImage1((request.getAttribute("product").toString()))%>" alt="thumbnail" width="50" height="50"/>
                 </div>
-                <div class="thumb-box">
-                    <img src="https://i.ibb.co/Jt5zc58/thumb2.jpg" alt="thumbnail" />
                 </div>
-                <div class="thumb-box">
-                    <img src="https://i.ibb.co/Yf9LMpy/thumb3.jpg" alt="thumbnail" />
+                <div style="padding-bottom: 20%">
+                <div style="border: thin solid black">
+                    <img src="<%=pdb.getProdImage2((request.getAttribute("product").toString()))%>" alt="thumbnail" width="50" height="50"/>
                 </div>
-                <div class="thumb-box">
-                    <img src="https://i.ibb.co/60hPGy2/thumb4.jpg" alt="thumbnail" />
+                </div>
+                <div style="padding-bottom: 20%">
+                <div style="border: thin solid black">
+                    <img src="<%=pdb.getProdImage3((request.getAttribute("product").toString()))%>" alt="thumbnail" width="50" height="50"/>
+                </div>
                 </div>
 
             </div>
-            <div class="item-image-main">
-                <img src="https://i.ibb.co/xYpFY0T/item1.jpg" alt="default" />
+            <!-- <div class="item-image-main"> -->
+            <div >
+                    <img src="<%=pdb.getProdImage1((request.getAttribute("product").toString()))%>" alt="thumbnail" width="464" height="604"/>
             </div>
         </div>
 
         <div class="item-info-parent">
             <!-- main info -->
             <div class="main-info">
-                <h4>EYEBOGLER Regular Fit Men's Cotton T-Shirt</h4>
+                <h4><%=pdb.getProdName((request.getAttribute("product").toString()))%></h4>
                 <div class="star-rating">
-                    <span>★★★★</span>★            
+                	<%if(pdb.getProdRating(request.getAttribute("product").toString()) == 5){ %>
+                    <span>★★★★★</span>     
+                    <%}else if(pdb.getProdRating(request.getAttribute("product").toString()) == 4){ %>
+                    <span>★★★★</span>★ 
+                    <%}else if(pdb.getProdRating(request.getAttribute("product").toString()) == 3){ %>
+                    <span>★★★</span>★★
+                    <%}else if(pdb.getProdRating(request.getAttribute("product").toString()) == 2){ %>
+                    <span>★★</span>★★★ 
+                    <%}else if(pdb.getProdRating(request.getAttribute("product").toString()) == 1){ %>
+                    <span>★</span>★★★★       
+                    <%} %>
                 </div>
-                <p>Price: <span id="price">₹ 449.00</span></p>
+                <p>Price: <span id="price">₹ <%=pdb.getProdPrice((request.getAttribute("product").toString()))%></span></p>
             </div>
             <!-- Choose -->
             <div class="select-items">
-                
-                <div class="change-color">
-                    <label><b>Colour:</b> Black</label><br>
-                    <div class="thumb-box">
-                        <img src="https://i.ibb.co/QjkJJk3/select1.jpg" alt="thumbnail" />
-                    </div>
-                    <div class="thumb-box">
-                        <img src="https://i.ibb.co/C297yD0/select2.jpg" alt="thumbnail" />
-                    </div>
-                </div>
-                
-                <div class="change-size">
-                    <label><b>Size:</b></label><br>
-                    <select>
-                        <option>S</option>
-                        <option>M</option>
-                        <option>L</option>
-                        <option>XL</option>
-                        <option>2XL</option>
-                    </select>
-                </div>
-
                 <div class="description">
                     <ul>
-                        <li>Care Instructions: Machine Wash</li>
-                        <li>Fit Type: Classic Fit</li>
-                        <li>Color name: Black-White</li>
-                        <li>Material: Cotton</li>
-                        <li>Pattern: Solid</li>
+                        <li><%=pdb.getProdDesc((request.getAttribute("product").toString()))%></li>
+
                     </ul>
                 </div>
             </div>

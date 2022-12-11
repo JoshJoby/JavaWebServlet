@@ -16,7 +16,7 @@ import java.sql.SQLException;
 public class ProdServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	public static boolean isAuth;
-       
+    public static String pName;
     /**
      * @see HttpServlet#HttpServlet()
      */
@@ -29,7 +29,20 @@ public class ProdServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		try {
+		
+		if((request.getParameter("buttonProd") == null) ? false : true){
+			System.out.println("Button is clicked!");
+			pName = (request.getParameter("buttonProd").toString());
+//			System.out.println((request.getParameter("buttonProd").toString()));
+			request.setAttribute("product", pName);
+			}
+			else{System.out.println("Button is not clicked!");}
+		try {		
+//			pName = HomeServlet.productName;
+//			System.out.println(pName);
+//			request.setAttribute("productName", pName);
+
+
 			processRequest(request, response);
 		} catch (ServletException | IOException | SQLException e) {
 			// TODO Auto-generated catch block
@@ -42,6 +55,8 @@ public class ProdServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
+
+		
 		try {
 			processRequest(request, response);
 		} catch (ServletException | IOException | SQLException e) {
@@ -55,8 +70,17 @@ public class ProdServlet extends HttpServlet {
 		String email = SignInServlet.userEmail;
 		String name;
 		UserDB udb = new UserDB();
+		ProdDB pdb = new ProdDB();
 		name = udb.getName(email);
 		System.out.print(isAuth);
+		System.out.println("\n-----\n");
+		System.out.println(pdb.getProdName("product1"));
+		System.out.println(pdb.getProdPrice("product1"));
+		System.out.println(pdb.getProdRating("product1"));
+		System.out.println(pdb.getProdQuantity("product1"));
+		System.out.println(pdb.getProdDesc("product1"));
+
+	
 		request.setAttribute("isAuth", isAuth);
 		request.setAttribute("name", name);		
 		RequestDispatcher requestDispatcher = request.getRequestDispatcher("/WEB-INF/views/prod.jsp");
