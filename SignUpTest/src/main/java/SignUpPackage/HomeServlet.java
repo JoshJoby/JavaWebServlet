@@ -8,6 +8,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.LinkedList;
 import SignUpPackage.SignInServlet;
 /**
  * Servlet implementation class SignInServlet
@@ -17,6 +18,8 @@ public class HomeServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	public static boolean isAuth;
 	public static String productName;
+   	public static LinkedList<CartModel> chosenProds = new LinkedList<CartModel>();
+
     /**
      * @see HttpServlet#HttpServlet()
      */

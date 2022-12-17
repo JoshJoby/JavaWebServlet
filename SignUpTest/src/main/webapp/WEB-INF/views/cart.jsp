@@ -3,6 +3,8 @@
  
 <%@page import="java.util.LinkedList" %>
 <%@page import="SignUpPackage.CartModel" %>
+<%@page import="SignUpPackage.HomeServlet" %>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -405,10 +407,8 @@ label {
     <label class="product-line-price">Total</label>
   </div>
 
-	<% LinkedList<CartModel> cartmodel = (LinkedList<CartModel>)request.getAttribute("chosenProds");%>
-		<% System.out.println(cartmodel.size());%>
 	
-	<%for(CartModel cm : cartmodel){ %>
+	<%for(CartModel cm : HomeServlet.chosenProds){ %>
 	
   <div class="product">
     <div class="product-image">

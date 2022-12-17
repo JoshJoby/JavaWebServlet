@@ -5,6 +5,8 @@
 <%@page import="SignUpPackage.ProdDB"  %>
 <%@page import="java.util.LinkedList" %>
 <%@page import="SignUpPackage.CartModel" %>
+<%@page import="java.sql.SQLException" %>
+
 
 <%ProdDB pdb = new ProdDB(); %>
 
@@ -74,8 +76,12 @@
 			}
 		%>	
 		
+		
+		
 		<form id="formCart" action="prod.jsp" method="get"></form>
-		<form id="formAddToCart" action="cart.jsp" method="get"></form>
+		<form id="formAddToCart" action="cart.jsp" method="get">
+		
+		</form>
 	
 	
 		<!--welcome-hero start -->
@@ -118,7 +124,9 @@
 														 ₹ <%=pdb.getProdPrice("product2")%>
 														</p>
 													</div>
-													<button class="btn-cart welcome-add-cart"  type="submit" name="buttonProd" value="product2" form="formAddToCart">
+													<button class="btn-cart welcome-add-cart"  type="submit" name="buttonProdCart" value="product2" form="formAddToCart" >
+													
+													
 														<span class="lnr lnr-plus-circle"></span>
 														add <span>to</span> cart
 													</button>
@@ -169,6 +177,39 @@
 												</div><!--/.welcome-hero-txt-->
 											</div><!--/.single-welcome-hero-->
 										</div><!--/.col-->
+										
+										<%
+										if((request.getParameter("buttonProdCart") == null) ? false : true){
+
+									       	CartModel cartmodel = null;
+												System.out.println("Button is clicked! In home.jsp");
+												String pName = (request.getParameter("buttonProdCart").toString());
+												try {
+													 cartmodel = new CartModel(
+															pdb.getProdImage1(pName),
+															pdb.getProdDesc(pName),
+															pdb.getProdPrice(pName),
+															pdb.getProdQuantity(pName),
+															pdb.getProdPrice(pName)*pdb.getProdQuantity(pName));
+													 HomeServlet.chosenProds.push(cartmodel);
+													 System.out.println("Hey");
+												} catch (SQLException e) {
+													// TODO Auto-generated catch block
+													e.printStackTrace();
+												}
+												request.setAttribute("chosenProds", HomeServlet.chosenProds);
+												for(CartModel cm : HomeServlet.chosenProds) {
+												System.out.println("___________________________________");
+												System.out.println(cm.getProdImage());
+												System.out.println(cm.getProdDesc());
+												System.out.println(cm.getProdCost());
+												System.out.println(cm.getProdQuantity());
+												System.out.println(cm.getTotalProdCost());
+											}
+										}
+										%>	
+        
+										
 										<div class="col-sm-5">
 											<div class="single-welcome-hero">
 												<div class="welcome-hero-img">
@@ -922,6 +963,7 @@
         
         <!--Custom JS-->
         <script src="assets/js/custom.js"></script>
+
         
     </body>
     

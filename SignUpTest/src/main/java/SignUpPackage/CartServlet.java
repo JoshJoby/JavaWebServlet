@@ -7,6 +7,7 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import SignUpPackage.HomeServlet;
 import java.sql.SQLException;
 import java.util.LinkedList;
 
@@ -34,23 +35,7 @@ public class CartServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		ProdDB pdb = new ProdDB();
-		CartModel cartmodel = null;
-		if((request.getParameter("buttonProd") == null) ? false : true){
-			System.out.println("Button is clicked! In Cart.jsp");
-			pName = (request.getParameter("buttonProd").toString());
-			try {
-				 cartmodel = new CartModel(
-						pdb.getProdImage1(pName),
-						pdb.getProdDesc(pName),
-						pdb.getProdPrice(pName),
-						pdb.getProdQuantity(pName),
-						pdb.getProdPrice(pName)*pdb.getProdQuantity(pName));
-			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			chosenProds.push(cartmodel);
-			for(CartModel cm : chosenProds) {
+			for(CartModel cm : HomeServlet.chosenProds) {
 				System.out.println("___________________________________");
 				System.out.println(cm.getProdImage());
 				System.out.println(cm.getProdDesc());
@@ -59,11 +44,10 @@ public class CartServlet extends HttpServlet {
 				System.out.println(cm.getTotalProdCost());
 
 			}
-			request.setAttribute("chosenProds", chosenProds);
+//			request.setAttribute("chosenProds", chosenProds);
 //			System.out.println((request.getParameter("buttonProd").toString()));
-			request.setAttribute("product", pName);
-			}
-			else{System.out.println("Button is not clicked!");}
+//			request.setAttribute("product", pName);
+			
 		
 		try {
 			processRequest(request, response);
