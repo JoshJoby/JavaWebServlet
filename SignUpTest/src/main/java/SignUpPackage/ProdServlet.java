@@ -73,14 +73,6 @@ public class ProdServlet extends HttpServlet {
 		ProdDB pdb = new ProdDB();
 		name = udb.getName(email);
 		System.out.print(isAuth);
-		System.out.println("\n-----\n");
-		System.out.println(pdb.getProdName("product1"));
-		System.out.println(pdb.getProdPrice("product1"));
-		System.out.println(pdb.getProdRating("product1"));
-		System.out.println(pdb.getProdQuantity("product1"));
-		System.out.println(pdb.getProdDesc("product1"));
-
-	
 		request.setAttribute("isAuth", isAuth);
 		request.setAttribute("name", name);		
 		RequestDispatcher requestDispatcher = request.getRequestDispatcher("/WEB-INF/views/prod.jsp");

@@ -96,7 +96,7 @@
 				                	</li>	
 				                	<%}else if((boolean)request.getAttribute("isAuth")){ %>	             
 				                    <li class="dropdown">
-				                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" >
+				                        <a href="cart.jsp" class="dropdown-toggle" data-toggle="dropdown" >
 				                            <p style="font-size: 12px">Cart</p>
 											<span class="badge badge-bg-1">2</span>
 				                        </a>
@@ -156,11 +156,10 @@
 				            <!-- Collect the nav links, forms, and other content for toggling -->
 				            <div class="collapse navbar-collapse menu-ui-design" id="navbar-menu" >
 				                <ul class="nav navbar-nav navbar-center" data-in="fadeInDown" data-out="fadeOutUp">
-				                    <li class=" scroll active"><a href="#home">home</a></li>
-				                    <li class="scroll"><a href="#new-arrivals">new arrival</a></li>
+				                    <li class="scroll"><a href="#new-arrivals">new arrivals</a></li>
 				                    <li class="scroll"><a href="#feature">features</a></li>
 				                    <li class="scroll"><a href="#blog">blog</a></li>
-				                    <li class="scroll"><a href="#newsletter">contact</a></li>
+				                    <li class="scroll"><a href="#newsletter">contact us</a></li>
 				                </ul><!--/.nav -->
 				            </div><!-- /.navbar-collapse -->
 				        </div><!--/.container-->
@@ -218,7 +217,7 @@
                     <span>★</span>★★★★       
                     <%} %>
                 </div>
-                <p>Price: <span id="price">₹ <%=pdb.getProdPrice((request.getAttribute("product").toString()))%></span></p>
+                <p><span id="price">₹ <%=pdb.getProdPrice((request.getAttribute("product").toString()))%></span></p>
             </div>
             <!-- Choose -->
             <div class="select-items">

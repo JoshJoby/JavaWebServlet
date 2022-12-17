@@ -3,6 +3,9 @@
 <%@page import="SignUpPackage.HomeServlet" %>
 <%@page import="SignUpPackage.SignInServlet" %>
 <%@page import="SignUpPackage.ProdDB"  %>
+<%@page import="java.util.LinkedList" %>
+<%@page import="SignUpPackage.CartModel" %>
+
 <%ProdDB pdb = new ProdDB(); %>
 
     
@@ -71,6 +74,9 @@
 			}
 		%>	
 		
+		<form id="formCart" action="prod.jsp" method="get"></form>
+		<form id="formAddToCart" action="cart.jsp" method="get"></form>
+	
 	
 		<!--welcome-hero start -->
 		<header id="home" class="welcome-hero" >
@@ -103,22 +109,20 @@
 										<div class="col-sm-7">									
 											<div class="single-welcome-hero">
 												<div class="welcome-hero-txt">
-													<h4>great design collection</h4>
-													<h2>cloth covered accent chair</h2>
+													<h2><%=pdb.getProdName("product2")%></h2>
 													<p>
-														Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiuiana smod tempor  ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip. 
+															<%=pdb.getProdDesc("product2")%>	
 													</p>
 													<div class="packages-price">
 														<p>
-															$ 399.00
-															<del>$ 499.00</del>
+														 ₹ <%=pdb.getProdPrice("product2")%>
 														</p>
 													</div>
-													<button class="btn-cart welcome-add-cart" onclick="window.location.href='#'">
+													<button class="btn-cart welcome-add-cart"  type="submit" name="buttonProd" value="product2" form="formAddToCart">
 														<span class="lnr lnr-plus-circle"></span>
 														add <span>to</span> cart
 													</button>
-													<button class="btn-cart welcome-add-cart welcome-more-info" onclick="window.location.href='#'">
+													<button class="btn-cart welcome-add-cart welcome-more-info"  type="submit" name="buttonProd" value="product2" form="formCart">
 														more info
 													</button>
 												</div><!--/.welcome-hero-txt-->
@@ -127,7 +131,7 @@
 										<div class="col-sm-5">
 											<div class="single-welcome-hero">
 												<div class="welcome-hero-img">
-													<img src="assets/images/slider/slider1.png" alt="slider image">
+													<img src="<%=pdb.getProdImage1("product2")%>" alt="slider image">
 												</div><!--/.welcome-hero-txt-->
 											</div><!--/.single-welcome-hero-->
 										</div><!--/.col-->
@@ -146,18 +150,16 @@
 										<div class="col-sm-7">
 											<div class="single-welcome-hero">
 												<div class="welcome-hero-txt">
-													<h4>great design collection</h4>
-													<h2>mapple wood accent chair</h2>
+													<h2><%=pdb.getProdName("product3")%></h2>
 													<p>
-														Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiuiana smod tempor  ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip. 
+															<%=pdb.getProdDesc("product3")%>	
 													</p>
 													<div class="packages-price">
 														<p>
-															$ 199.00
-															<del>$ 299.00</del>
+														 ₹ <%=pdb.getProdPrice("product3")%>
 														</p>
 													</div>
-													<button class="btn-cart welcome-add-cart" onclick="window.location.href='#'">
+													<button class="btn-cart welcome-add-cart" type="submit" name="buttonProd" value="product3" form="formCart">
 														<span class="lnr lnr-plus-circle"></span>
 														add <span>to</span> cart
 													</button>
@@ -170,7 +172,7 @@
 										<div class="col-sm-5">
 											<div class="single-welcome-hero">
 												<div class="welcome-hero-img">
-													<img src="assets/images/slider/slider2.png" alt="slider image">
+													<img src="<%=pdb.getProdImage1("product3")%>" alt="slider image">
 												</div><!--/.welcome-hero-txt-->
 											</div><!--/.single-welcome-hero-->
 										</div><!--/.col-->
@@ -189,7 +191,6 @@
 										<div class="col-sm-7">
 											<div class="single-welcome-hero">
 												<div class="welcome-hero-txt">
-													<h4>great design collection</h4>
 													<h2><%=pdb.getProdName("product1")%></h2>
 													<p>
 														<%=pdb.getProdDesc("product1")%>
@@ -199,10 +200,9 @@
 														 ₹ <%=pdb.getProdPrice("product1")%>
 														</p>
 													</div>
-													<form id="formCart" action="prod.jsp" method="get"></form>
 													<button class="btn-cart welcome-add-cart" type="submit" name="buttonProd" value="product1" form="formCart">
 														<span class="lnr lnr-plus-circle"></span>
-														add <span>to</span> Caaaart
+														add <span>to</span> Cart
 													</button>
 													<button class="btn-cart welcome-add-cart welcome-more-info" onclick="window.location.href='#'">
 														more info
@@ -277,13 +277,13 @@
 				                	</li>	
 				                	<%}else if((boolean)request.getAttribute("isAuth")){ %>	             
 				                    <li class="dropdown">
-				                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" >
+				                        <a href="cart.jsp" class="dropdown-toggle" data-toggle="dropdown" >
 				                            <p style="font-size: 12px">Cart</p>
 											<span class="badge badge-bg-1">2</span>
 				                        </a>
 				                        <ul class="dropdown-menu cart-list s-cate">
 				                            <li class="single-cart-list">
-				                                <a href="#" class="photo"><img src="assets/images/collection/arrivals1.png" class="cart-thumb" alt="image" /></a>
+				                                <a href="#" class="photo"><img src="https://picsum.photos/id/10/1000/1000" class="cart-thumb" alt="image" /></a>
 				                                <div class="cart-list-txt">
 				                                	<h6><a href="#">arm <br> chair</a></h6>
 				                                	<p>1 x - <span class="price">$180.00</span></p>
@@ -337,11 +337,10 @@
 				            <!-- Collect the nav links, forms, and other content for toggling -->
 				            <div class="collapse navbar-collapse menu-ui-design" id="navbar-menu" >
 				                <ul class="nav navbar-nav navbar-center" data-in="fadeInDown" data-out="fadeOutUp">
-				                    <li class=" scroll active"><a href="#home">home</a></li>
-				                    <li class="scroll"><a href="#new-arrivals">new arrival</a></li>
+				                    <li class="scroll"><a href="#new-arrivals">new arrivals</a></li>
 				                    <li class="scroll"><a href="#feature">features</a></li>
 				                    <li class="scroll"><a href="#blog">blog</a></li>
-				                    <li class="scroll"><a href="#newsletter">contact</a></li>
+				                    <li class="scroll"><a href="#newsletter">contact us</a></li>
 				                </ul><!--/.nav -->
 				            </div><!-- /.navbar-collapse -->
 				        </div><!--/.container-->
@@ -365,7 +364,7 @@
 						<div class="col-md-3">
 							<div class="single-populer-products">
 								<div class="single-populer-product-img mt40">
-									<img src="assets/images/populer-products/p1.png" alt="populer-products images">
+									<img src="https://picsum.photos/id/15/200/200" alt="populer-products images">
 								</div>
 								<h2><a href="#">arm chair</a></h2>
 								<div class="single-populer-products-para">
@@ -379,7 +378,7 @@
 									<div class="row">
 										<div class="col-md-4 col-sm-12">
 											<div class="single-inner-populer-product-img">
-												<img src="assets/images/populer-products/p2.png" alt="populer-products images">
+												<img src="https://picsum.photos/id/20/200/200" alt="populer-products images">
 											</div>
 										</div>
 										<div class="col-md-8 col-sm-12">
@@ -408,7 +407,7 @@
 							<div class="single-populer-products">
 								<div class="single-populer-products">
 									<div class="single-populer-product-img">
-										<img src="assets/images/populer-products/p3.png" alt="populer-products images">
+										<img src="https://picsum.photos/id/22/200/200" alt="populer-products images">
 									</div>
 									<h2><a href="#">hanging lamp</a></h2>
 									<div class="single-populer-products-para">
@@ -435,7 +434,7 @@
 						<div class="col-md-3 col-sm-4">
 							<div class="single-new-arrival">
 								<div class="single-new-arrival-bg">
-									<img src="assets/images/collection/arrivals1.png" alt="new-arrivals images">
+									<img src="https://picsum.photos/id/30/200/200" alt="new-arrivals images">
 									<div class="single-new-arrival-bg-overlay"></div>
 									<div class="sale bg-1">
 										<p>sale</p>
@@ -458,7 +457,7 @@
 						<div class="col-md-3 col-sm-4">
 							<div class="single-new-arrival">
 								<div class="single-new-arrival-bg">
-									<img src="assets/images/collection/arrivals2.png" alt="new-arrivals images">
+									<img src="https://picsum.photos/id/40/200/200" alt="new-arrivals images">
 									<div class="single-new-arrival-bg-overlay"></div>
 									<div class="sale bg-2">
 										<p>sale</p>
@@ -613,47 +612,7 @@
 		
 		</section><!--/.new-arrivals-->
 		<!--new-arrivals end -->
-
-		<!--sofa-collection start -->
-		<section id="sofa-collection">
-			<div class="owl-carousel owl-theme" id="collection-carousel">
-				<div class="sofa-collection collectionbg1">
-					<div class="container">
-						<div class="sofa-collection-txt">
-							<h2>unlimited sofa collection</h2>
-							<p>
-								Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. 
-							</p>
-							<div class="sofa-collection-price">
-								<h4>strting from <span>$ 199</span></h4>
-							</div>
-							<button class="btn-cart welcome-add-cart sofa-collection-btn" onclick="window.location.href='#'">
-								view more
-							</button>
-						</div>
-					</div>	
-				</div><!--/.sofa-collection-->
-				<div class="sofa-collection collectionbg2">
-					<div class="container">
-						<div class="sofa-collection-txt">
-							<h2>unlimited dainning table collection</h2>
-							<p>
-								Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. 
-							</p>
-							<div class="sofa-collection-price">
-								<h4>strting from <span>$ 299</span></h4>
-							</div>
-							<button class="btn-cart welcome-add-cart sofa-collection-btn" onclick="window.location.href='#'">
-								view more
-							</button>
-						</div>
-					</div>
-				</div><!--/.sofa-collection-->
-			</div><!--/.collection-carousel-->
-
-		</section><!--/.sofa-collection-->
-		<!--sofa-collection end -->
-
+		<hr>
 		<!--feature start -->
 		<section id="feature" class="feature">
 			<div class="container">

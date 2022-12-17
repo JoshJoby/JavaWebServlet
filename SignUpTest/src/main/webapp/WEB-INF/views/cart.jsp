@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+ 
+<%@page import="java.util.LinkedList" %>
+<%@page import="SignUpPackage.CartModel" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -76,7 +79,7 @@ Side note: I know that this style of nesting in SASS doesn't result in the most 
 .product .product-price:before,
 .product .product-line-price:before,
 .totals-value:before {
-  content: "$";
+  content: "₹";
 }
 
 /* Body/Header stuff */
@@ -248,7 +251,7 @@ label {
   }
 
   .product .product-line-price:before {
-    content: "Item Total: $";
+    content: "Item Total: ₹";
   }
 
   .totals .totals-item label {
@@ -349,46 +352,11 @@ label {
 				                	</li>	
 				                	<%}else if((boolean)request.getAttribute("isAuth")){ %>	             
 				                    <li class="dropdown">
-				                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" >
+				                        <a href="cart.jsp" class="dropdown-toggle" data-toggle="dropdown" >
 				                            <p style="font-size: 12px">Cart</p>
 											<span class="badge badge-bg-1">2</span>
 				                        </a>
-				                        <ul class="dropdown-menu cart-list s-cate">
-				                            <li class="single-cart-list">
-				                                <a href="#" class="photo"><img src="assets/images/collection/arrivals1.png" class="cart-thumb" alt="image" /></a>
-				                                <div class="cart-list-txt">
-				                                	<h6><a href="#">arm <br> chair</a></h6>
-				                                	<p>1 x - <span class="price">$180.00</span></p>
-				                                </div><!--/.cart-list-txt-->
-				                                <div class="cart-close">
-				                                	<span class="lnr lnr-cross"></span>
-				                                </div><!--/.cart-close-->
-				                            </li><!--/.single-cart-list -->
-				                            <li class="single-cart-list">
-				                                <a href="#" class="photo"><img src="assets/images/collection/arrivals2.png" class="cart-thumb" alt="image" /></a>
-				                                <div class="cart-list-txt">
-				                                	<h6><a href="#">single <br> armchair</a></h6>
-				                                	<p>1 x - <span class="price">$180.00</span></p>
-				                                </div><!--/.cart-list-txt-->
-				                                <div class="cart-close">
-				                                	<span class="lnr lnr-cross"></span>
-				                                </div><!--/.cart-close-->
-				                            </li><!--/.single-cart-list -->
-				                            <li class="single-cart-list">
-				                                <a href="#" class="photo"><img src="assets/images/collection/arrivals3.png" class="cart-thumb" alt="image" /></a>
-				                                <div class="cart-list-txt">
-				                                	<h6><a href="#">wooden arn <br> chair</a></h6>
-				                                	<p>1 x - <span class="price">$180.00</span></p>
-				                                </div><!--/.cart-list-txt-->
-				                                <div class="cart-close">
-				                                	<span class="lnr lnr-cross"></span>
-				                                </div><!--/.cart-close-->
-				                            </li><!--/.single-cart-list -->
-				                            <li class="total">
-				                                <span>Total: $0.00</span>
-				                                <button class="btn-cart pull-right" onclick="window.location.href='#'">view cart</button>
-				                            </li>				                            
-				                        </ul>
+				                        
 				                       
 				                    </li><!--/.dropdown-->
 				                    <%}%>
@@ -409,11 +377,10 @@ label {
 				            <!-- Collect the nav links, forms, and other content for toggling -->
 				            <div class="collapse navbar-collapse menu-ui-design" id="navbar-menu" >
 				                <ul class="nav navbar-nav navbar-center" data-in="fadeInDown" data-out="fadeOutUp">
-				                    <li class=" scroll active"><a href="#home">home</a></li>
-				                    <li class="scroll"><a href="#new-arrivals">new arrival</a></li>
+				                    <li class="scroll"><a href="#new-arrivals">new arrivals</a></li>
 				                    <li class="scroll"><a href="#feature">features</a></li>
 				                    <li class="scroll"><a href="#blog">blog</a></li>
-				                    <li class="scroll"><a href="#newsletter">contact</a></li>
+				                    <li class="scroll"><a href="#newsletter">contact us</a></li>
 				                </ul><!--/.nav -->
 				            </div><!-- /.navbar-collapse -->
 				        </div><!--/.container-->
@@ -438,17 +405,22 @@ label {
     <label class="product-line-price">Total</label>
   </div>
 
+	<% LinkedList<CartModel> cartmodel = (LinkedList<CartModel>)request.getAttribute("chosenProds");%>
+		<% System.out.println(cartmodel.size());%>
+	
+	<%for(CartModel cm : cartmodel){ %>
+	
   <div class="product">
     <div class="product-image">
-      <img src="https://s.cdpn.io/3/dingo-dog-bones.jpg">
+      <img src=<%=cm.getProdImage()%>>
     </div>
     <div class="product-details">
       <div class="product-title">Dingo Dog Bones</div>
-      <p class="product-description">The best dog bones of all time. Holy crap. Your dog will be begging for these things! I got curious once and ate one myself. I'm a fan.</p>
+      <p class="product-description"><%=cm.getProdDesc()%></p>
     </div>
-    <div class="product-price">12.99</div>
+    <div class="product-price"><%=cm.getProdCost()%></div>
     <div class="product-quantity">
-      <input type="number" value="2" min="1">
+      <input type="number" value="<%=cm.getProdQuantity()%>" min="1">
     </div>
     <div class="product-removal">
       <button class="remove-product">
@@ -457,26 +429,9 @@ label {
     </div>
     <div class="product-line-price">25.98</div>
   </div>
+  <%} %>
 
-  <div class="product">
-    <div class="product-image">
-      <img src="https://s.cdpn.io/3/large-NutroNaturalChoiceAdultLambMealandRiceDryDogFood.png">
-    </div>
-    <div class="product-details">
-      <div class="product-title">Nutro™ Adult Lamb and Rice Dog Food</div>
-      <p class="product-description">Who doesn't like lamb and rice? We've all hit the halal cart at 3am while quasi-blackout after a night of binge drinking in Manhattan. Now it's your dog's turn!</p>
-    </div>
-    <div class="product-price">45.99</div>
-    <div class="product-quantity">
-      <input type="number" value="1" min="1">
-    </div>
-    <div class="product-removal">
-      <button class="remove-product">
-        Remove
-      </button>
-    </div>
-    <div class="product-line-price">45.99</div>
-  </div>
+  
 
   <div class="totals">
     <div class="totals-item">
@@ -522,7 +477,7 @@ label {
 										<span class="feature-review">(45 review)</span>
 									</p>
 									<h3><a href="#">designed sofa</a></h3>
-									<h5>$160.00</h5>
+									<h5>160.00</h5>
 								</div>
 							</div>
 						</div>
@@ -539,7 +494,7 @@ label {
 										<span class="feature-review">(45 review)</span>
 									</p>
 									<h3><a href="#">dinning table </a></h3>
-									<h5>$200.00</h5>
+									<h5>200.00</h5>
 								</div>
 							</div>
 						</div>
@@ -556,7 +511,7 @@ label {
 										<span class="feature-review">(45 review)</span>
 									</p>
 									<h3><a href="#">chair and table</a></h3>
-									<h5>$100.00</h5>
+									<h5>100.00</h5>
 								</div>
 							</div>
 						</div>
