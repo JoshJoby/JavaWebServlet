@@ -1,6 +1,24 @@
 package SignUpPackage;
 
 public class CartModel {
+	String prodID;
+	String prodName;
+	public String getProdID() {
+		return prodID;
+	}
+
+	public void setProdID(String prodID) {
+		this.prodID = prodID;
+	}
+
+	public String getProdName() {
+		return prodName;
+	}
+
+	public void setProdName(String prodName) {
+		this.prodName = prodName;
+	}
+
 	String prodImage;
 	String prodDesc;
 	float prodCost;
@@ -47,7 +65,9 @@ public class CartModel {
 		this.totalProdCost = totalProdCost;
 	}
 
-	public CartModel(String prodImage, String prodDesc, float prodCost, int prodQuantity, float totalProdCost) {
+	public CartModel(String prodID, String prodName, String prodImage, String prodDesc, float prodCost, int prodQuantity, float totalProdCost) {
+		this.prodID = prodID;
+		this.prodName = prodName;
 		this.prodImage = prodImage;
 		this.prodDesc = prodDesc;
 		this.prodCost = prodCost;

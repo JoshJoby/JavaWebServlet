@@ -63,34 +63,7 @@ public class HomeServlet extends HttpServlet {
 	}
 	
 	protected void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, SQLException {
-		ProdDB pdb = new ProdDB();
-		if((request.getParameter("buttonProdCart") == null) ? false : true){
-
-		   	CartModel cartmodel = null;
-				System.out.println("Button is clicked! In home.jsp");
-				String pName = (request.getParameter("buttonProdCart").toString());
-				try {
-					 cartmodel = new CartModel(
-							pdb.getProdImage1(pName),
-							pdb.getProdDesc(pName),
-							pdb.getProdPrice(pName),
-							pdb.getProdQuantity(pName),
-							pdb.getProdPrice(pName)*pdb.getProdQuantity(pName));
-					 HomeServlet.chosenProds.push(cartmodel);
-				} catch (SQLException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-				request.setAttribute("chosenProds", HomeServlet.chosenProds);
-				for(CartModel cm : HomeServlet.chosenProds) {
-				System.out.println("___________________________________");
-				System.out.println(cm.getProdImage());
-				System.out.println(cm.getProdDesc());
-				System.out.println(cm.getProdCost());
-				System.out.println(cm.getProdQuantity());
-				System.out.println(cm.getTotalProdCost());
-			}
-		}		
+	
 		isAuth = SignInServlet.isLoggedIn;
 		String email = SignInServlet.userEmail;
 		String name;

@@ -62,13 +62,6 @@ public class RedirectServlet extends HttpServlet {
 //			System.out.println("page was refreshed ! ");
 //		}
 		
-		Cookie cookie = null;
-		Cookie cookies[] = request.getCookies();
-        for (int i = 0; i < cookies.length; i++) {
-        	cookie = cookies[i];
-        	System.out.println(cookie.getName() + " : " + cookie.getValue());
-        	
-        }		
 		ProdDB pdb = new ProdDB();
 		if((request.getParameter("buttonProdCart") == null) ? false : true){
 
@@ -77,6 +70,8 @@ public class RedirectServlet extends HttpServlet {
 				String pName = (request.getParameter("buttonProdCart").toString());
 				try {
 					 cartmodel = new CartModel(
+							pdb.getProdID(pName),
+							pdb.getProdName(pName),
 							pdb.getProdImage1(pName),
 							pdb.getProdDesc(pName),
 							pdb.getProdPrice(pName),

@@ -421,7 +421,7 @@ label {
       <img src=<%=cm.getProdImage()%>>
     </div>
     <div class="product-details">
-      <div class="product-title">Dingo Dog Bones</div>
+      <div class="product-title"><%=cm.getProdName()%></div>
       <p class="product-description"><%=cm.getProdDesc()%></p>
     </div>
     <div class="product-price"><%=cm.getProdCost()%></div>
@@ -429,7 +429,7 @@ label {
       <input type="number" value="<%=cm.getProdQuantity()%>" min="1">
     </div>
     <div class="product-removal">
-      <button class="remove-product">
+      <button class="remove-product" id="<%=cm.getProdID()%>">
         Remove
       </button>
     </div>

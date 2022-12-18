@@ -54,6 +54,10 @@ public class ProdDB {
 //	}
 //	
 //	
+	public String getProdID(String prodID) {
+		return prodID;
+	}
+	
 	public String getProdName(String prodID) throws SQLException {
 		String prodName = "";
 		rs = s.executeQuery("SELECT PRODNAME FROM PRODUCTS WHERE PRODID = \"" + prodID + "\"");
