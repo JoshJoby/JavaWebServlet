@@ -13,8 +13,7 @@
     
 <!doctype html>
 <html class="no-js" lang="en">
-
-    <head>
+    <head> 
         <!-- meta data -->
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -64,6 +63,7 @@
         <![endif]-->
 
     </head>
+    
 	
 	<body>
 		<!--[if lte IE 9]>
@@ -79,7 +79,7 @@
 		
 		
 		<form id="formCart" action="prod.jsp" method="get"></form>
-		<form id="formAddToCart" action="cart.jsp" method="get">
+		<form id="formAddToCart" action="Redirect.jsp" method="get">
 		
 		</form>
 	
@@ -178,36 +178,7 @@
 											</div><!--/.single-welcome-hero-->
 										</div><!--/.col-->
 										
-										<%
-										if((request.getParameter("buttonProdCart") == null) ? false : true){
-
-									       	CartModel cartmodel = null;
-												System.out.println("Button is clicked! In home.jsp");
-												String pName = (request.getParameter("buttonProdCart").toString());
-												try {
-													 cartmodel = new CartModel(
-															pdb.getProdImage1(pName),
-															pdb.getProdDesc(pName),
-															pdb.getProdPrice(pName),
-															pdb.getProdQuantity(pName),
-															pdb.getProdPrice(pName)*pdb.getProdQuantity(pName));
-													 HomeServlet.chosenProds.push(cartmodel);
-													 System.out.println("Hey");
-												} catch (SQLException e) {
-													// TODO Auto-generated catch block
-													e.printStackTrace();
-												}
-												request.setAttribute("chosenProds", HomeServlet.chosenProds);
-												for(CartModel cm : HomeServlet.chosenProds) {
-												System.out.println("___________________________________");
-												System.out.println(cm.getProdImage());
-												System.out.println(cm.getProdDesc());
-												System.out.println(cm.getProdCost());
-												System.out.println(cm.getProdQuantity());
-												System.out.println(cm.getTotalProdCost());
-											}
-										}
-										%>	
+										
         
 										
 										<div class="col-sm-5">

@@ -4,10 +4,14 @@
 <%@page import="java.util.LinkedList" %>
 <%@page import="SignUpPackage.CartModel" %>
 <%@page import="SignUpPackage.HomeServlet" %>
+<%@page import="SignUpPackage.ProdDB"  %>
+<%@page import="java.util.LinkedList" %>
+<%@page import="java.sql.SQLException" %>
 
 <!DOCTYPE html>
 <html>
 <head>
+
 
 <style>
 /*
@@ -266,6 +270,8 @@ label {
 
 </style>
 
+
+
 <meta charset="UTF-8">
 <title>Insert title here</title>
 
@@ -427,7 +433,7 @@ label {
         Remove
       </button>
     </div>
-    <div class="product-line-price">25.98</div>
+    <div class="product-line-price"><%=cm.getTotalProdCost()%></div>
   </div>
   <%} %>
 

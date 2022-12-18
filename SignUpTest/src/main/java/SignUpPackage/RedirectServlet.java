@@ -8,15 +8,14 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import SignUpPackage.HomeServlet;
 import java.sql.SQLException;
 import java.util.LinkedList;
 
 /**
  * Servlet implementation class CartServlet
  */
-@WebServlet("/cart.jsp")
-public class CartServlet extends HttpServlet {
+@WebServlet("/Redirect.jsp")
+public class RedirectServlet extends HttpServlet {
 	public static boolean isAuth;
 	private static final long serialVersionUID = 1L;
     String pName;
@@ -25,7 +24,7 @@ public class CartServlet extends HttpServlet {
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public CartServlet() {
+    public RedirectServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -106,7 +105,7 @@ public class CartServlet extends HttpServlet {
 		System.out.print(isAuth);
 		request.setAttribute("isAuth", isAuth);
 		request.setAttribute("name", name);			
-		RequestDispatcher requestDispatcher = request.getRequestDispatcher("/WEB-INF/views/cart.jsp");
+		RequestDispatcher requestDispatcher = request.getRequestDispatcher("/WEB-INF/views/Redirect.jsp");
 		requestDispatcher.forward(request, response);
 		return;
 	}
