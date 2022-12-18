@@ -54,6 +54,12 @@ public class RedirectServlet extends HttpServlet {
 			e.printStackTrace();
 		}
 	}
+	
+	int getSelectedProdQuantity(String prodID) {
+		int len = 0;
+		return len;
+		
+	}
 
 	
 	protected void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, SQLException {

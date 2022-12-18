@@ -352,22 +352,16 @@ label {
 									</div>	
 				                	 <%}%>	
 				                	</li><!--/.search-->
-				                	<%if(!(boolean)request.getAttribute("isAuth")){%>	
-				                	<li>
-				                			<a href="#" onclick="alert('Please log in to view cart! ')">
+				                	<li class="dropdown">
+				                        <a href="cart.jsp" >
 				                            <p style="font-size: 12px">Cart</p>
-				                        </a>
-				                	</li>	
-				                	<%}else if((boolean)request.getAttribute("isAuth")){ %>	             
-				                    <li class="dropdown">
-				                        <a href="cart.jsp" class="dropdown-toggle" data-toggle="dropdown" >
-				                            <p style="font-size: 12px">Cart</p>
-											<span class="badge badge-bg-1">2</span>
-				                        </a>
-				                        
-				                       
+				                            <%if(HomeServlet.chosenProds.size() != 0){ %>
+												<span class="badge badge-bg-1"><%=HomeServlet.chosenProds.size()%></span>
+											<%}else{ %>
+												<span class="badge badge-bg-1"></span>
+											<%} %>
+				                        </a>			                       
 				                    </li><!--/.dropdown-->
-				                    <%}%>
 				                </ul>
 				            </div><!--/.attr-nav-->
 				            <!-- End Atribute Navigation -->
@@ -457,9 +451,11 @@ label {
       <div class="totals-value" id="cart-total">90.57</div>
     </div>
   </div>
-      
-      <button class="checkout">Checkout</button>
-
+     <%if(!(boolean)request.getAttribute("isAuth")){%>	
+      <button class="checkout" onclick="alert('Please log in to view cart! ')">Checkout</button>
+	<%}else if((boolean)request.getAttribute("isAuth")){ %>	             
+	<button class="checkout">Checkout</button>
+	<%}%>
 </div>
        <hr>    
    

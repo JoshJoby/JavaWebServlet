@@ -2,6 +2,8 @@
     pageEncoding="UTF-8"%>
 <%@page import="SignUpPackage.SignInServlet" %>
 <%@page import="SignUpPackage.ProdDB"  %>
+<%@page import="SignUpPackage.HomeServlet"  %>
+
 <%ProdDB pdb = new ProdDB(); %>
 <!doctype html>   
 <html lang="en">
@@ -88,57 +90,16 @@
 									</div>	
 				                	 <%}%>	
 				                	</li><!--/.search-->
-				                	<%if(!(boolean)request.getAttribute("isAuth")){%>	
-				                	<li>
-				                			<a href="#" onclick="alert('Please log in to view cart! ')">
+				                	<li class="dropdown">
+				                        <a href="cart.jsp" >
 				                            <p style="font-size: 12px">Cart</p>
-				                        </a>
-				                	</li>	
-				                	<%}else if((boolean)request.getAttribute("isAuth")){ %>	             
-				                    <li class="dropdown">
-				                        <a href="cart.jsp" class="dropdown-toggle" data-toggle="dropdown" >
-				                            <p style="font-size: 12px">Cart</p>
-											<span class="badge badge-bg-1">2</span>
-				                        </a>
-				                        <ul class="dropdown-menu cart-list s-cate">
-				                            <li class="single-cart-list">
-				                                <a href="#" class="photo"><img src="assets/images/collection/arrivals1.png" class="cart-thumb" alt="image" /></a>
-				                                <div class="cart-list-txt">
-				                                	<h6><a href="#">arm <br> chair</a></h6>
-				                                	<p>1 x - <span class="price">$180.00</span></p>
-				                                </div><!--/.cart-list-txt-->
-				                                <div class="cart-close">
-				                                	<span class="lnr lnr-cross"></span>
-				                                </div><!--/.cart-close-->
-				                            </li><!--/.single-cart-list -->
-				                            <li class="single-cart-list">
-				                                <a href="#" class="photo"><img src="assets/images/collection/arrivals2.png" class="cart-thumb" alt="image" /></a>
-				                                <div class="cart-list-txt">
-				                                	<h6><a href="#">single <br> armchair</a></h6>
-				                                	<p>1 x - <span class="price">$180.00</span></p>
-				                                </div><!--/.cart-list-txt-->
-				                                <div class="cart-close">
-				                                	<span class="lnr lnr-cross"></span>
-				                                </div><!--/.cart-close-->
-				                            </li><!--/.single-cart-list -->
-				                            <li class="single-cart-list">
-				                                <a href="#" class="photo"><img src="assets/images/collection/arrivals3.png" class="cart-thumb" alt="image" /></a>
-				                                <div class="cart-list-txt">
-				                                	<h6><a href="#">wooden arn <br> chair</a></h6>
-				                                	<p>1 x - <span class="price">$180.00</span></p>
-				                                </div><!--/.cart-list-txt-->
-				                                <div class="cart-close">
-				                                	<span class="lnr lnr-cross"></span>
-				                                </div><!--/.cart-close-->
-				                            </li><!--/.single-cart-list -->
-				                            <li class="total">
-				                                <span>Total: $0.00</span>
-				                                <button class="btn-cart pull-right" onclick="window.location.href='#'">view cart</button>
-				                            </li>				                            
-				                        </ul>
-				                       
+				                            <%if(HomeServlet.chosenProds.size() != 0){ %>
+												<span class="badge badge-bg-1"><%=HomeServlet.chosenProds.size()%></span>
+											<%}else{ %>
+												<span class="badge badge-bg-1"></span>
+											<%} %>
+				                        </a>			                       
 				                    </li><!--/.dropdown-->
-				                    <%}%>
 				                </ul>
 				            </div><!--/.attr-nav-->
 				            <!-- End Atribute Navigation -->
