@@ -35,6 +35,7 @@ public class CartServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
+		
 		try {
 			processRequest(request, response);
 		} catch (ServletException | IOException | SQLException e) {

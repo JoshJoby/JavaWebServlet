@@ -3,6 +3,15 @@ package SignUpPackage;
 public class CartModel {
 	String prodID;
 	String prodName;
+	int prodSelectedQuantity;
+	public int getProdSelectedQuantity() {
+		return prodSelectedQuantity;
+	}
+
+	public void setProdSelectedQuantity(int prodSelectedQuantity) {
+		this.prodSelectedQuantity = prodSelectedQuantity;
+	}
+
 	public String getProdID() {
 		return prodID;
 	}
@@ -65,7 +74,7 @@ public class CartModel {
 		this.totalProdCost = totalProdCost;
 	}
 
-	public CartModel(String prodID, String prodName, String prodImage, String prodDesc, float prodCost, int prodQuantity, float totalProdCost) {
+	public CartModel(String prodID, String prodName, String prodImage, String prodDesc, float prodCost, int prodQuantity, float totalProdCost, int prodSelectedQuantity) {
 		this.prodID = prodID;
 		this.prodName = prodName;
 		this.prodImage = prodImage;
@@ -73,5 +82,6 @@ public class CartModel {
 		this.prodCost = prodCost;
 		this.prodQuantity = prodQuantity;
 		this.totalProdCost = totalProdCost;
+		this.prodSelectedQuantity = prodSelectedQuantity;
 	}
 }

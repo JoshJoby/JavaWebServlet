@@ -72,8 +72,18 @@ public class RedirectServlet extends HttpServlet {
 		if((request.getParameter("buttonProdCart") == null) ? false : true){
 
 		   	CartModel cartmodel = null;
+		   	int flag=0;
 				System.out.println("Button is clicked! In home.jsp");
 				String pName = (request.getParameter("buttonProdCart").toString());
+				for(CartModel cm : HomeServlet.chosenProds) {
+					if(cm.getProdID().equals(pName)) {
+						System.out.println("Element is present in the linked list");
+						cm.setProdSelectedQuantity(cm.getProdSelectedQuantity() + 1);
+						flag=1;
+						break;
+					}
+				}
+				if(flag==0) {
 				try {
 					 cartmodel = new CartModel(
 							pdb.getProdID(pName),
@@ -82,11 +92,15 @@ public class RedirectServlet extends HttpServlet {
 							pdb.getProdDesc(pName),
 							pdb.getProdPrice(pName),
 							pdb.getProdQuantity(pName),
-							pdb.getProdPrice(pName)*pdb.getProdQuantity(pName));
+							pdb.getProdPrice(pName)*pdb.getProdQuantity(pName), 
+							1);
 					 HomeServlet.chosenProds.push(cartmodel);
+
+
 				} catch (SQLException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
+				}
 				}
 				request.setAttribute("chosenProds", HomeServlet.chosenProds);
 				for(CartModel cm : HomeServlet.chosenProds) {
@@ -98,6 +112,33 @@ public class RedirectServlet extends HttpServlet {
 				System.out.println(cm.getTotalProdCost());
 			}
 		}
+		
+		String pName;
+		if((request.getParameter("removeButton") == null) ? false : true){
+			pName = (request.getParameter("removeButton"));
+			System.out.println("Remove Button is clicked for : " + (request.getParameter("removeButton")));
+			CartModel cartmodel = null;
+			for(CartModel cm : HomeServlet.chosenProds) {
+				if(cm.getProdID().equals(pName)) {
+					HomeServlet.chosenProds.remove(cm);
+					break;
+				}
+			}
+			request.setAttribute("chosenProds", HomeServlet.chosenProds);
+			System.out.println("Product removed : " + pName);
+			for(CartModel cm : HomeServlet.chosenProds) {
+			System.out.println("___________________________________");
+			System.out.println(cm.getProdID());
+			System.out.println(cm.getProdImage());
+			System.out.println(cm.getProdDesc());
+			System.out.println(cm.getProdCost());
+			System.out.println(cm.getProdQuantity());
+			System.out.println(cm.getTotalProdCost());
+		}
+
+		}
+		else{System.out.println("Remove Button is not clicked!");}	
+		
 		isAuth = SignInServlet.isLoggedIn;
 		String email = SignInServlet.userEmail;
 		String name;

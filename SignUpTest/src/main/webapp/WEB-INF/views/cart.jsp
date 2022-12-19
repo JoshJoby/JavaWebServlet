@@ -306,8 +306,11 @@ label {
         
         <!--responsive.css-->
         <link rel="stylesheet" href="assets/css/responsive.css">
+        
+        
 </head>
 <body>
+        <form id="deleteFromCart" action="Redirect.jsp" method="get"></form>
 
 <header style="background: #ffffff;" id="home" class="welcome-hero">
 <div id="header-carousel" class="carousel slide carousel-fade" data-ride="carousel">
@@ -390,7 +393,7 @@ label {
 				    <!-- End Navigation -->
 				</div><!--/.header-area-->
 			    <div class="clearfix"></div>
-
+			</div>
 			</div>
 </header>
 
@@ -420,10 +423,10 @@ label {
     </div>
     <div class="product-price"><%=cm.getProdCost()%></div>
     <div class="product-quantity">
-      <input type="number" value="<%=cm.getProdQuantity()%>" min="1">
+      <input type="number" value="<%=cm.getProdSelectedQuantity()%>" min="1" max="<%=cm.getProdQuantity()%>">
     </div>
     <div class="product-removal">
-      <button class="remove-product" id="<%=cm.getProdID()%>">
+      <button class="remove-product" name="removeButton" type="submit" value="<%=cm.getProdID()%>" form="deleteFromCart">
         Remove
       </button>
     </div>
