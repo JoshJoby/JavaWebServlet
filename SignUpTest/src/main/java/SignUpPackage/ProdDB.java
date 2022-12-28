@@ -16,44 +16,79 @@ public class ProdDB {
 			s.executeUpdate("CREATE DATABASE IF NOT EXISTS USERDB1");
 			s.executeUpdate("USE USERDB1");
 			s.executeUpdate("CREATE TABLE IF NOT EXISTS PRODUCTS (PRODID VARCHAR(30) PRIMARY KEY, PRODNAME VARCHAR(30), PRODPRICE FLOAT(9,2), PRODRATING INT, PRODIMAGE1 VARCHAR(100), PRODIMAGE2 VARCHAR(100),PRODIMAGE3 VARCHAR(100), PRODQUANTITY INT, PRODDESC VARCHAR(255))");
+			insertProducts();
 		} catch (ClassNotFoundException | SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} 
 	}
 	
-//	public boolean checkIfUserExistsInDB(String email) {        imma use for search results
-//		boolean flag = false;
-//		try {
-//			System.out.println(email);
-//			rs = s.executeQuery("SELECT EMAIL FROM USERS");
-//			
-//			int x = 0;
-//			while(rs.next())
-//				x++;
-//			if(x==0) 
-//				return false;
-//			
-//			rs.beforeFirst();
-//			while(rs.next()) {
-//				String testName;
-//				testName = rs.getString(1);
-//				if(testName.equals(email)) {
-//					System.out.println("exists");
-//					return true;
-//				}
-//				else {
-//					flag = false;
-//				}
-//			}
-//		} catch (SQLException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
-//		return flag;
-//	}
-//	
-//	
+	public void insertProducts() {
+		boolean flag;
+		try {
+			rs = s.executeQuery("SELECT * FROM PRODUCTS");
+			int x = 0;
+			while(rs.next())
+				x++;
+				
+			if(x==0) 
+				flag = false;
+			else
+				flag = true;
+			
+			if(!flag) {
+				for(int i=1; i<75; i++) {
+
+				s.executeUpdate("INSERT INTO PRODUCTS VALUES(\'product" + i + "\', \'productName" + i + "\', " + i*1000 + ".99 , 3"
+						 + ",  \'https://picsum.photos/id/"+ i +"/1000/1000.jpg\',"
+						 		+ " \'https://picsum.photos/id/"+ (i+1) +"/1000/1000.jpg\', "
+						 		+ " \'https://picsum.photos/id/"+ (i+2) +"/1000/1000.jpg\', 20, \'This is Product Number " + i + " and is designed for testing purposes. Handle with care and perform all the required tests!\');");
+				}
+			}
+			else {
+				System.out.println("Records already exist!");
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+	}
+	
+	public boolean checkIfProdExistsInDB(String pName) {        //imma use for search results
+		boolean flag = false;
+		try {
+			System.out.println(pName);
+			rs = s.executeQuery("SELECT PRODNAME FROM PRODUCTS");
+			
+			int x = 0;
+			while(rs.next())
+				x++;
+			if(x==0) 
+				return false;
+			
+			rs.beforeFirst();
+			while(rs.next()) {
+				String testName;
+				String compareName = pName.toLowerCase();
+				testName = rs.getString(1).toLowerCase();
+				if(testName.equals(compareName)) {
+					System.out.println("exists");
+					return true;
+				}
+				else {
+					System.out.println("Does not exist");
+					flag = false;
+				}
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return flag;
+	}
+	
+	
 	public String getProdID(String prodID) {
 		return prodID;
 	}

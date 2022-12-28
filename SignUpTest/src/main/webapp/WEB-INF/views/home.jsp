@@ -247,8 +247,10 @@
 				        <div class="top-search">
 				            <div class="container">
 				                <div class="input-group">
-				                    <span class="input-group-addon"><i class="fa fa-search"></i></span>
-				                    <input type="text" class="form-control" placeholder="Search">
+				                    <span class="input-group-addon"><i class="fa fa-search"></i></span>		
+				                    <form id="formSearchProds" action="results.jsp" method="get">
+				                    <input type="text" class="form-control" placeholder="Search" name="searchProds">
+				                    </form>
 				                    <span class="input-group-addon close-search"><i class="fa fa-times"></i></span>
 				                </div>
 				            </div>
@@ -363,7 +365,7 @@
 												<div class="populer-products-price">
 													<h4>Sales Start from <span>$99.00</span></h4>
 												</div>
-												<button class="btn-cart welcome-add-cart populer-products-btn" onclick="window.location.href='#'">
+												<button class="btn-cart welcome-add-cart populer-products-btn" onclick="window.location.href='results.jsp'">
 													discover more
 												</button>
 											</div>

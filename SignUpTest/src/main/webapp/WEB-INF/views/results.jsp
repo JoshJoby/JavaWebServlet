@@ -3,18 +3,13 @@
 <%@page import="SignUpPackage.SignInServlet" %>
 <%@page import="SignUpPackage.ProdDB"  %>
 <%@page import="SignUpPackage.HomeServlet"  %>
+<%@page import="java.sql.*" %>
 
-<%ProdDB pdb = new ProdDB(); %>
-<!doctype html>   
-<html lang="en">
-<head>
-	<meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>amazon | Product Page</title>
-    <link href="assets/css/styleprod.css" rel="stylesheet"/>
-    <link href="assets/css/styleprod.css" rel="stylesheet"/>
-    		<link href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i" rel="stylesheet">
+<!DOCTYPE html>
+	<head>
+    	<link href="assets/css/styleprod.css" rel="stylesheet"/>
+    	<link href="assets/css/styleprod.css" rel="stylesheet"/>
+    	<link href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i" rel="stylesheet">
     
 		<link rel="shortcut icon" type="image/icon" href="assets/logo/favicon.png"/>
        
@@ -43,7 +38,135 @@
         <!--responsive.css-->
         <link rel="stylesheet" href="assets/css/responsive.css">
 </head>
-<body>
+<style>
+* {
+  box-sizing: border-box; 
+}
+body {
+  padding: 20px;
+  width: 70%;
+  margin: 0 auto;
+}
+.screen-reader-text {
+  position: absolute;
+  top: -9999px;
+  left: -9999px;
+}
+
+.search-form {
+  width: 35%;
+  float: left;
+  padding-right: 20px;
+}
+.search-term {
+  width: 100%;
+  margin: 0 0 5px 0;
+}
+.search-terms {
+  display: table;
+  margin: 0 0 10px 0;
+}
+.search-filters {
+  overflow: hidden;
+  margin: 0 0 10px 0;
+  background: #eee;
+  padding: 10px;
+}
+.search-filters-title {
+  font-weight: normal;
+  font-size: 1em;
+  margin: 0 0 10px 0;
+}
+.filter-group {
+  margin: 0 0 10px 0;
+}
+.cloned-filters {
+  display: none; 
+}
+.search-results {
+  width: 65%;
+  float: right;
+  padding-bottom: 2500px; /* just scrolling space */
+}
+.result {
+  float: left;
+  width: 24%;
+  height: 120px;
+  margin-left: 5%;
+  margin-right: 5%;
+  margin-bottom: 10%;
+  background: #eee;
+}
+.result:nth-child(3n) {
+  margin-right: 0; 
+}
+.result img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+@media (max-width: 1000px) {
+  body {
+    width: 90%;
+  }
+}
+
+@media (max-width: 600px) {
+  body,
+  .search-form,
+  .search-results {
+    width: 100%;
+  }
+  .search-form {
+    padding: 0;
+  }
+  .search-terms {
+    display: table;
+    width: 100%;
+    margin: 0;
+  }
+  .search-terms > div {
+    display: table-row; 
+  }
+  .search-terms > div > span {
+    display: table-cell;
+  }
+  .search-term-wrap {
+    padding-right: 10px;
+  }
+  .search-button {
+    width: 100%;
+  }
+  .search-filters-title {
+    color: blue;
+    text-decoration: underline;
+    cursor: pointer;
+    margin: 0;
+  }
+  .search-filters.pinned {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background: rgba(0, 0, 0, 0.2);
+  }
+  .filter-group {
+    display: none;
+  }
+  .filter-explanation {
+    display: none;  
+  }
+  
+  .filters-open .filter-group,
+  .filters-open .filter-explanation {
+    display: block; 
+  }
+  .filters-open .search-filters-title {
+    margin: 0 0 10px 0;
+  }
+}
+</style>
 
 <header style="background: #ffffff;" id="home" class="welcome-hero">
 <div id="header-carousel" class="carousel slide carousel-fade" data-ride="carousel">
@@ -63,9 +186,6 @@
 				            </div>
 				        </div>
 				        <!-- End Top Search -->
-						<%
-							System.out.println((request.getAttribute("product").toString()));
-							%>
 				        <div class="container">            
 				            <!-- Start Atribute Navigation -->
 				            <div class="attr-nav">
@@ -132,79 +252,101 @@
 			</div>
 </header>
 
-    <section id="product-info" style="margin-bottom: 5%">
+<form role="search" class="search-form" id="search-form" action="#" method="post">
+  
+  <section class="search-terms">
+    <label for="search-term" class="search-term-label screen-reader-text">Search Terms</label>
+    <div>
+      <span class="search-term-wrap">
+        <input type="search" id="search-term" class="search-term">
+      </span>
+      <span class="search-term-button-wrap">
+        <input type="submit" value="Search" class="search-button">
+      </span>
+    </div>
+  </section>
 
-        <div class="item-image-parent">
-            <!--  <div class="item-list-vertical">  -->
-            <div style="padding-right: 10%">
-                <!-- <div class="thumb-box"> -->
-                <div style="padding-bottom: 20%">
-                <div style="border: thin solid black">
-                    <img src="<%=pdb.getProdImage1((request.getAttribute("product").toString()))%>" alt="thumbnail" width="50" height="50"/>
-                </div>
-                </div>
-                <div style="padding-bottom: 20%">
-                <div style="border: thin solid black">
-                    <img src="<%=pdb.getProdImage2((request.getAttribute("product").toString()))%>" alt="thumbnail" width="50" height="50"/>
-                </div>
-                </div>
-                <div style="padding-bottom: 20%">
-                <div style="border: thin solid black">
-                    <img src="<%=pdb.getProdImage3((request.getAttribute("product").toString()))%>" alt="thumbnail" width="50" height="50"/>
-                </div>
-                </div>
-
-            </div>
-            <!-- <div class="item-image-main"> -->
-            <div >
-                    <img src="<%=pdb.getProdImage1((request.getAttribute("product").toString()))%>" alt="thumbnail" width="464" height="604"/>
-            </div>
-        </div>
-
-        <div class="item-info-parent">
-            <!-- main info -->
-            <div class="main-info">
-                <h4><%=pdb.getProdName((request.getAttribute("product").toString()))%></h4>
-                <div class="star-rating">
-                	<%if(pdb.getProdRating(request.getAttribute("product").toString()) == 5){ %>
-                    <span>★★★★★</span>     
-                    <%}else if(pdb.getProdRating(request.getAttribute("product").toString()) == 4){ %>
-                    <span>★★★★</span>★ 
-                    <%}else if(pdb.getProdRating(request.getAttribute("product").toString()) == 3){ %>
-                    <span>★★★</span>★★
-                    <%}else if(pdb.getProdRating(request.getAttribute("product").toString()) == 2){ %>
-                    <span>★★</span>★★★ 
-                    <%}else if(pdb.getProdRating(request.getAttribute("product").toString()) == 1){ %>
-                    <span>★</span>★★★★       
-                    <%} %>
-                </div>
-                <p><span id="price">₹ <%=pdb.getProdPrice((request.getAttribute("product").toString()))%></span></p>
-            </div>
-            <!-- Choose -->
-            <div class="select-items">
-                <div class="description">
-                    <ul>
-                        <li><%=pdb.getProdDesc((request.getAttribute("product").toString()))%></li>
-
-                    </ul>
-                </div>
-            </div>
-            <!-- Description -->
-            <hr>
-            <form name="formAddToCart" action="Redirect.jsp" method="get">
-            <%System.out.println(request.getAttribute("product")); %>
-                <button type="submit" name="buttonProdCart" value=<%=request.getAttribute("product")%>>
-	        		<img width="150" height="125" src="https://www.paypalobjects.com/en_US/i/btn/btn_cart_LG.gif">
-	        	</button>
-    			<img alt="" width="3" height="3"
-        			src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" ></form>
-        </div>
-    </section>
-
+  <section class="search-filters" id="search-filters">
     
-       <hr>    
-   
-    <section id="feature" class="feature">
+    <h3 class="search-filters-title" id="search-filters-title">Search Filters</h3>
+    
+    <div class="size-filters filter-group">
+    
+      <div>
+        <input type="checkbox" id="filter-size-small">
+        <label for="filter-size-small">Small</label>
+      </div>
+      
+      <div>
+        <input type="checkbox" id="filter-size-medium" checked>
+        <label for="filter-size-medium">Medium</label>
+      </div>
+      
+      <div>
+        <input type="checkbox" id="filter-size-large">
+        <label for="filter-size-large">Large</label>
+      </div>
+      
+    </div>
+    
+    <div class="content-filters filter-group">
+      
+      <div>
+        <input type="radio" id="filter-content-cats" name="filter-content">
+        <label for="filter-content-cats">Cats</label>
+      </div>
+      
+      <div>
+        <input type="radio" id="filter-content-dogs" name="filter-content">
+        <label for="filter-content-dogs">Dogs</label>
+      </div>
+      
+      <div>
+        <input type="radio" id="filter-content-Birds" name="filter-content">
+        <label for="filter-content-birds">Birds</label>
+      </div>
+    </div>
+    
+    <small class="filter-explanation">Choosing filters automatically refines and refreshes search.</small>
+    
+  </section>
+</form>
+
+<section class="search-results">
+<% 
+Connection con;
+Statement s;
+ResultSet rs;
+Class.forName("com.mysql.cj.jdbc.Driver");
+con = DriverManager.getConnection(
+		"jdbc:mysql://localhost:3306/USERDB1", "root", "root");
+s = con.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
+ProdDB pdb = new ProdDB();
+try {
+	rs = s.executeQuery("SELECT * FROM PRODUCTS");
+	int x = 0;
+	while(rs.next())	
+	{
+	%>
+  <div class="result">
+  <img src="<%=pdb.getProdImage1(rs.getString(1))%>">
+  </div>
+    <div class="result">
+  <img src="<%=pdb.getProdImage2(rs.getString(1))%>">
+  </div>
+    <div class="result">
+  <img src="<%=pdb.getProdImage3(rs.getString(1))%>">
+  </div>
+<%}
+}catch (SQLException e) {
+	// TODO Auto-generated catch block
+	e.printStackTrace();
+}
+%>
+
+</section>
+  
+<section id="feature" class="feature">
 			<div class="container">
 				<div class="section-header">
 					<h2>featured products</h2>
@@ -484,11 +626,74 @@
 				<div class="return-to-top">
 					<i class="fa fa-angle-up " id="scroll-top" data-toggle="tooltip" data-placement="top" title="" data-original-title="Back to Top" aria-hidden="true"></i>
 				</div>
-				
 			</div><!--/.scroll-Top-->
-			
         </footer><!--/.footer-->
-    <script src="assets/js/jquery.js"></script>
+  <script>
+  var Search = {
+		  
+		  searchForm: $("#search-form"),
+		  searchTerms: $("#search-terms"),
+		  searchFilters: $("#search-filters"),
+		  searchFiltersTitle: $("#search-filters-title"),
+		  offset: $("#search-filters-title").offset(),
+		  win: $(window),
+		  
+		  init: function() {
+		    Search.bindUIEvents();
+		  },
+		  
+		  bindUIEvents: function() {
+		    
+		    Search.searchFiltersTitle
+		      .on(
+		        "click",
+		        Search.toggleSearchFilters
+		      );
+		    
+		    Search.win
+		      .on(
+		        "scroll",
+		        Search.filterHeaderPosition
+		       );
+		    
+		    Search.searchForm
+		      .on(
+		         "submit",
+		        Search.searchSubmit
+		       );
+		    
+		  },
+		  
+		  toggleSearchFilters: function() {    
+		    Search.searchForm
+		      .toggleClass("filters-open");
+		  },
+		  
+		  filterHeaderPosition: function() {
+		    
+		     var scrollTop = Search.win.scrollTop();
+		           
+		     if (scrollTop > Search.offset.top) {
+		       Search.searchFilters.addClass("pinned");
+		       Search.searchTerms.css("margin-bottom", Search.searchFilters.outerHeight());
+		     } else {
+		       Search.searchFilters.removeClass("pinned"); 
+		       Search.searchTerms.css("margin-bottom", "10px");
+		     };
+		    
+		  },
+		  
+		  searchSubmit: function() {
+		    // process new search
+		    return false; 
+		  }
+		  
+		};
+
+		Search.init();
+  </script>
+  
+      <script src="assets/js/jquery.js"></script>
         
         <!--modernizr.min.js-->
         <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js"></script>
@@ -508,5 +713,5 @@
         
         <!--Custom JS-->
         <script src="assets/js/custom.js"></script>
-</body>
-</html>
+  
+</footer>
