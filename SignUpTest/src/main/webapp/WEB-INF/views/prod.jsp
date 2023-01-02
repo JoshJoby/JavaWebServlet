@@ -3,6 +3,10 @@
 <%@page import="SignUpPackage.SignInServlet" %>
 <%@page import="SignUpPackage.ProdDB"  %>
 <%@page import="SignUpPackage.HomeServlet"  %>
+<%@page import="SignUpPackage.CartDB"  %>
+<%@page import="SignUpPackage.CartDBModel"  %>
+
+
 
 <%ProdDB pdb = new ProdDB(); %>
 <!doctype html>   
@@ -192,7 +196,6 @@
             <!-- Description -->
             <hr>
             <form name="formAddToCart" action="Redirect.jsp" method="get">
-            <%System.out.println(request.getAttribute("product")); %>
                 <button type="submit" name="buttonProdCart" value=<%=request.getAttribute("product")%>>
 	        		<img width="150" height="125" src="https://www.paypalobjects.com/en_US/i/btn/btn_cart_LG.gif">
 	        	</button>

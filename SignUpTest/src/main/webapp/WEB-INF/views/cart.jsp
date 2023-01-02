@@ -4,14 +4,16 @@
 <%@page import="java.util.LinkedList" %>
 <%@page import="SignUpPackage.CartModel" %>
 <%@page import="SignUpPackage.HomeServlet" %>
+<%@page import="SignUpPackage.SignInServlet" %>
 <%@page import="SignUpPackage.ProdDB"  %>
+<%@page import="SignUpPackage.CartDB"  %>
 <%@page import="java.util.LinkedList" %>
 <%@page import="java.sql.SQLException" %>
 
 <!DOCTYPE html>
 <html>
 <head>
-
+<%CartDB cdb = new CartDB();%>
 
 <style>
 /*
@@ -28,7 +30,12 @@ Side note: I know that this style of nesting in SASS doesn't result in the most 
 
 .product-details {
   float: left;
-  width: 37%;
+  width: 27%;
+}
+
+.product-category {
+  float: left;
+  width: 10%;
 }
 
 .product-price {
@@ -224,7 +231,11 @@ label {
   }
 
   .product-quantity {
-    width: 100px;
+    width: 60px;
+  }
+  
+   .product-category {
+    width: 40px;
   }
   .product-quantity input {
     margin-left: 20px;

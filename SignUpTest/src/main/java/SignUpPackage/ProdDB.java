@@ -15,7 +15,7 @@ public class ProdDB {
 			s = con.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
 			s.executeUpdate("CREATE DATABASE IF NOT EXISTS USERDB1");
 			s.executeUpdate("USE USERDB1");
-			s.executeUpdate("CREATE TABLE IF NOT EXISTS PRODUCTS (PRODID VARCHAR(30) PRIMARY KEY, PRODNAME VARCHAR(30), PRODPRICE FLOAT(9,2), PRODRATING INT, PRODIMAGE1 VARCHAR(100), PRODIMAGE2 VARCHAR(100),PRODIMAGE3 VARCHAR(100), PRODQUANTITY INT, PRODDESC VARCHAR(255))");
+			s.executeUpdate("CREATE TABLE IF NOT EXISTS PRODUCTS (PRODID VARCHAR(30) PRIMARY KEY, PRODNAME VARCHAR(30), PRODPRICE FLOAT(9,2), PRODRATING INT, PRODIMAGE1 VARCHAR(100), PRODIMAGE2 VARCHAR(100),PRODIMAGE3 VARCHAR(100), PRODQUANTITY INT, PRODDESC VARCHAR(255), PRODCATEGORY VARCHAR(50))");
 			insertProducts();
 		} catch (ClassNotFoundException | SQLException e) {
 			// TODO Auto-generated catch block
@@ -35,14 +35,14 @@ public class ProdDB {
 				flag = false;
 			else
 				flag = true;
-			
+			String[] categories = {"Table", "Sofa", "Bed"};
 			if(!flag) {
 				for(int i=1; i<75; i++) {
 
 				s.executeUpdate("INSERT INTO PRODUCTS VALUES(\'product" + i + "\', \'productName" + i + "\', " + i*1000 + ".99 , 3"
 						 + ",  \'https://picsum.photos/id/"+ i +"/1000/1000.jpg\',"
 						 		+ " \'https://picsum.photos/id/"+ (i+1) +"/1000/1000.jpg\', "
-						 		+ " \'https://picsum.photos/id/"+ (i+2) +"/1000/1000.jpg\', 20, \'This is Product Number " + i + " and is designed for testing purposes. Handle with care and perform all the required tests!\');");
+						 		+ " \'https://picsum.photos/id/"+ (i+2) +"/1000/1000.jpg\', 20, \'This is Product Number " + i + " and is designed for testing purposes. Handle with care and perform all the required tests!\', \'" + categories[i%3] +"\');");
 				}
 			}
 			else {
@@ -152,6 +152,15 @@ public class ProdDB {
 	public String getProdDesc(String prodID) throws SQLException {
 		String prodDesc = "";
 		rs = s.executeQuery("SELECT PRODDESC FROM PRODUCTS WHERE PRODID = \"" + prodID + "\"");
+		while(rs.next()) {
+			prodDesc = rs.getString(1);	
+		}
+		return prodDesc;
+	}
+	
+	public String getProdCategory(String prodID) throws SQLException {
+		String prodDesc = "";
+		rs = s.executeQuery("SELECT PRODCATEGORY FROM PRODUCTS WHERE PRODID = \"" + prodID + "\"");
 		while(rs.next()) {
 			prodDesc = rs.getString(1);	
 		}

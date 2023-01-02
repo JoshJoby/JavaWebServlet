@@ -4,6 +4,15 @@ public class CartModel {
 	String prodID;
 	String prodName;
 	int prodSelectedQuantity;
+	String prodCategory;
+	public String getProdCategory() {
+		return prodCategory;
+	}
+
+	public void setProdCategory(String prodCategory) {
+		this.prodCategory = prodCategory;
+	}
+
 	public int getProdSelectedQuantity() {
 		return prodSelectedQuantity;
 	}
@@ -74,7 +83,7 @@ public class CartModel {
 		this.totalProdCost = totalProdCost;
 	}
 
-	public CartModel(String prodID, String prodName, String prodImage, String prodDesc, float prodCost, int prodQuantity, float totalProdCost, int prodSelectedQuantity) {
+	public CartModel(String prodID, String prodName, String prodImage, String prodDesc, float prodCost, int prodQuantity, float totalProdCost, int prodSelectedQuantity, String prodCategory) {
 		this.prodID = prodID;
 		this.prodName = prodName;
 		this.prodImage = prodImage;
@@ -83,5 +92,6 @@ public class CartModel {
 		this.prodQuantity = prodQuantity;
 		this.totalProdCost = totalProdCost;
 		this.prodSelectedQuantity = prodSelectedQuantity;
+		this.prodCategory = prodCategory;
 	}
 }

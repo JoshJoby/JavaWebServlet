@@ -3,12 +3,26 @@
 <%@page import="SignUpPackage.HomeServlet" %>
 <%@page import="SignUpPackage.SignInServlet" %>
 <%@page import="SignUpPackage.ProdDB"  %>
+<%@page import="SignUpPackage.CartDB"  %>
 <%@page import="java.util.LinkedList" %>
 <%@page import="SignUpPackage.CartModel" %>
 <%@page import="java.sql.SQLException" %>
 
 
-<%ProdDB pdb = new ProdDB(); %>
+<%ProdDB pdb = new ProdDB(); 
+CartDB cdb = new CartDB();
+
+if(!SignInServlet.isLoggedIn) {
+	System.out.println("Logged out!");
+	HomeServlet.chosenProds.clear();
+	CartDB.existingProds.clear();
+	SignInServlet.userEmail = null;
+}
+else if(SignInServlet.userEmail!=null && HomeServlet.chosenProds.size() == 0) {
+	cdb.getExistingUserProducts(SignInServlet.userEmail);
+	HomeServlet.chosenProds = (LinkedList<CartModel>) CartDB.existingProds.clone();
+}
+%>
 
     
 <!doctype html>
@@ -73,6 +87,8 @@
 			if((request.getParameter("btnLogOut") == null) ? false : true){
 				request.setAttribute("isAuth", false);
 				SignInServlet.isLoggedIn=false;
+				response.sendRedirect("index.jsp");
+
 			}
 		%>	
 		

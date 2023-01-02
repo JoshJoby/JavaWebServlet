@@ -17,7 +17,7 @@ public class SignInServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	public static boolean isAuth;
     public static boolean isLoggedIn;
-    static String userEmail;
+    public static String userEmail;
     /**
      * @see HttpServlet#HttpServlet()
      */
@@ -61,6 +61,7 @@ public class SignInServlet extends HttpServlet {
 				userEmail = email;
 //				request.setAttribute("isAuth", isAuth);
 				request.setAttribute("email", email);
+				
 				response.sendRedirect("index.jsp");
 				return;
 			}

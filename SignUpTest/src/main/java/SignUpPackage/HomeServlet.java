@@ -33,6 +33,7 @@ public class HomeServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
+
 		try {
 			processRequest(request, response);
 		} catch (ServletException | IOException | SQLException e) {
@@ -63,11 +64,12 @@ public class HomeServlet extends HttpServlet {
 	}
 	
 	protected void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, SQLException {
-	
+
 		isAuth = SignInServlet.isLoggedIn;
 		String email = SignInServlet.userEmail;
 		String name;
 		UserDB udb = new UserDB();
+		CartDB cdb = new CartDB();
 		name = udb.getName(email);
 		System.out.print(isAuth);
 //		productName = request.getAttribute("product").toString();

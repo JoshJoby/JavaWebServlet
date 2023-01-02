@@ -1,6 +1,7 @@
 package SignUpPackage;
 
 public class ProdModel {
+	private String prodCatgeory;
 	public String getProdName() {
 		return prodName;
 	}
@@ -50,7 +51,7 @@ public class ProdModel {
 		this.prodDesc = prodDesc;
 	}
 	public ProdModel(String prodName, float prodPrice, int prodRating, String prodImage, String prodImage2,
-			String prodImage3, int prodQuantity, String prodDesc, String prodID) {
+			String prodImage3, int prodQuantity, String prodDesc, String prodID, String prodCatgeory) {
 		this.prodName = prodName;
 		this.prodPrice = prodPrice;
 		this.prodRating = prodRating;
@@ -59,7 +60,8 @@ public class ProdModel {
 		this.prodImage3 = prodImage3;
 		this.prodQuantity = prodQuantity;
 		this.prodDesc = prodDesc;
-		this.prodID = prodID;
+		this.prodID = prodID; 
+		this.prodCatgeory = prodCatgeory;
 	}
 	public String getProdID() {
 		return prodID;
@@ -76,5 +78,11 @@ public class ProdModel {
 	private String prodImage3;
 	private int prodQuantity;
 	private String prodDesc;
+	public String getProdCatgeory() {
+		return prodCatgeory;
+	}
+	public void setProdCatgeory(String prodCatgeory) {
+		this.prodCatgeory = prodCatgeory;
+	}
 
 }
