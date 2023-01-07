@@ -211,72 +211,808 @@
 				</div><!--/.section-header-->
 				<div class="feature-content">
 					<div class="row">
-						<div class="col-sm-3">
-							<div class="single-feature">
-								<img src="assets/images/features/f1.jpg" alt="feature image">
+						<div class="col-md-3 col-sm-4">
+							<div class="single-new-arrival">
+								<div class="single-new-arrival-bg" style="margin-bottom: 10%">
+									<button type="submit" name="buttonProd" value="product17" form="formCart">										
+										<img src="<%=pdb.getProdImage1("product17")%>" alt="new-arrivals images">
+									</button>
+									<div class="sale bg-1">
+										<p>sale</p>
+									</div>
+									<div class="new-arrival-cart" style="padding-right: 15%">
+										
+											<button type="submit" name="buttonProdCart" value="product17" form="formAddToCart">										
+												<p >
+													<span class="lnr lnr-cart" ></span> 
+													Add To Cart
+												</p>									
+											</button>
+									</div>
+								</div>
+								<div class="single-feature">
 								<div class="single-feature-txt text-center">
 									<p>
+									<%if(pdb.getProdRating("product17") == 5){ %>
+										<i class="fa fa-star"></i>
+										<i class="fa fa-star"></i>
+										<i class="fa fa-star"></i>
+										<i class="fa fa-star"></i>
+										<i class="fa fa-star"></i>
+										<span class="feature-review">(45 review)</span>
+									<%}else if(pdb.getProdRating("product17") == 4){ %>
 										<i class="fa fa-star"></i>
 										<i class="fa fa-star"></i>
 										<i class="fa fa-star"></i>
 										<i class="fa fa-star"></i>
 										<span class="spacial-feature-icon"><i class="fa fa-star"></i></span>
 										<span class="feature-review">(45 review)</span>
+									<%}else if(pdb.getProdRating("product17") == 3){ %>
+										<i class="fa fa-star"></i>
+										<i class="fa fa-star"></i>
+										<i class="fa fa-star"></i>																					
+										<span class="spacial-feature-icon"><i class="fa fa-star"></i></span>
+										<span class="spacial-feature-icon"><i class="fa fa-star"></i></span>
+										<span class="feature-review">(45 review)</span>
+									<%}else if(pdb.getProdRating("product17") == 2){ %>
+										<i class="fa fa-star"></i>
+										<i class="fa fa-star"></i>
+										<span class="spacial-feature-icon"><i class="fa fa-star"></i></span>
+										<span class="spacial-feature-icon"><i class="fa fa-star"></i></span>
+										<span class="spacial-feature-icon"><i class="fa fa-star"></i></span>
+										<span class="feature-review">(45 review)</span>
+									<%}else if(pdb.getProdRating("product17") == 1){ %>
+										<i class="fa fa-star"></i>
+										<span class="spacial-feature-icon"><i class="fa fa-star"></i></span>
+										<span class="spacial-feature-icon"><i class="fa fa-star"></i></span>
+										<span class="spacial-feature-icon"><i class="fa fa-star"></i></span>
+										<span class="spacial-feature-icon"><i class="fa fa-star"></i></span>
+										<span class="feature-review">(45 review)</span>
+									<%} %>
 									</p>
-									<h3><a href="#">designed sofa</a></h3>
-									<h5>$160.00</h5>
 								</div>
 							</div>
-						</div>
-						<div class="col-sm-3">
-							<div class="single-feature">
-								<img src="assets/images/features/f2.jpg" alt="feature image">
-								<div class="single-feature-txt text-center">
-									<p>
-										<i class="fa fa-star"></i>
-										<i class="fa fa-star"></i>
-										<i class="fa fa-star"></i>
-										<i class="fa fa-star"></i>
-										<span class="spacial-feature-icon"><i class="fa fa-star"></i></span>
-										<span class="feature-review">(45 review)</span>
-									</p>
-									<h3><a href="#">dinning table </a></h3>
-									<h5>$200.00</h5>
-								</div>
+								<button type="submit" name="buttonProd" value="product17" form="formCart" >
+								<h4><%=pdb.getProdName("product17")%></h4>
+								</button>
+								<p class="arrival-product-price">₹<%=pdb.getProdPrice("product17")%></p>
 							</div>
 						</div>
-						<div class="col-sm-3">
-							<div class="single-feature">
-								<img src="assets/images/features/f3.jpg" alt="feature image">
+						<div class="col-md-3 col-sm-4">
+							<div class="single-new-arrival">
+								<div class="single-new-arrival-bg" style="margin-bottom: 10%">
+									<button type="submit" name="buttonProd" value="product18" form="formCart">										
+										<img src="<%=pdb.getProdImage1("product18")%>" alt="new-arrivals images">
+									</button>
+									<div class="sale bg-1">
+										<p>sale</p>
+									</div>
+									<div class="new-arrival-cart" style="padding-right: 15%">
+										
+											<button type="submit" name="buttonProdCart" value="product18" form="formAddToCart">										
+												<p >
+													<span class="lnr lnr-cart" ></span> 
+													Add To Cart
+												</p>									
+											</button>
+									</div>
+								</div>
+								<div class="single-feature">
 								<div class="single-feature-txt text-center">
 									<p>
+									<%if(pdb.getProdRating("product18") == 5){ %>
+										<i class="fa fa-star"></i>
+										<i class="fa fa-star"></i>
+										<i class="fa fa-star"></i>
+										<i class="fa fa-star"></i>
+										<i class="fa fa-star"></i>
+										<span class="feature-review">(45 review)</span>
+									<%}else if(pdb.getProdRating("product18") == 4){ %>
 										<i class="fa fa-star"></i>
 										<i class="fa fa-star"></i>
 										<i class="fa fa-star"></i>
 										<i class="fa fa-star"></i>
 										<span class="spacial-feature-icon"><i class="fa fa-star"></i></span>
 										<span class="feature-review">(45 review)</span>
+									<%}else if(pdb.getProdRating("product18") == 3){ %>
+										<i class="fa fa-star"></i>
+										<i class="fa fa-star"></i>
+										<i class="fa fa-star"></i>																					
+										<span class="spacial-feature-icon"><i class="fa fa-star"></i></span>
+										<span class="spacial-feature-icon"><i class="fa fa-star"></i></span>
+										<span class="feature-review">(45 review)</span>
+									<%}else if(pdb.getProdRating("product18") == 2){ %>
+										<i class="fa fa-star"></i>
+										<i class="fa fa-star"></i>
+										<span class="spacial-feature-icon"><i class="fa fa-star"></i></span>
+										<span class="spacial-feature-icon"><i class="fa fa-star"></i></span>
+										<span class="spacial-feature-icon"><i class="fa fa-star"></i></span>
+										<span class="feature-review">(45 review)</span>
+									<%}else if(pdb.getProdRating("product18") == 1){ %>
+										<i class="fa fa-star"></i>
+										<span class="spacial-feature-icon"><i class="fa fa-star"></i></span>
+										<span class="spacial-feature-icon"><i class="fa fa-star"></i></span>
+										<span class="spacial-feature-icon"><i class="fa fa-star"></i></span>
+										<span class="spacial-feature-icon"><i class="fa fa-star"></i></span>
+										<span class="feature-review">(45 review)</span>
+									<%} %>
 									</p>
-									<h3><a href="#">chair and table</a></h3>
-									<h5>$100.00</h5>
 								</div>
 							</div>
+								<button type="submit" name="buttonProd" value="product18" form="formCart" >
+								<h4><%=pdb.getProdName("product18")%></h4>
+								</button>
+								<p class="arrival-product-price">₹<%=pdb.getProdPrice("product18")%></p>
+							</div>
 						</div>
-						<div class="col-sm-3">
-							<div class="single-feature">
-								<img src="assets/images/features/f4.jpg" alt="feature image">
+						<div class="col-md-3 col-sm-4">
+							<div class="single-new-arrival">
+								<div class="single-new-arrival-bg" style="margin-bottom: 10%">
+									<button type="submit" name="buttonProd" value="product19" form="formCart">										
+										<img src="<%=pdb.getProdImage1("product19")%>" alt="new-arrivals images">
+									</button>
+									<div class="sale bg-1">
+										<p>sale</p>
+									</div>
+									<div class="new-arrival-cart" style="padding-right: 15%">
+										
+											<button type="submit" name="buttonProdCart" value="product19" form="formAddToCart">										
+												<p >
+													<span class="lnr lnr-cart" ></span> 
+													Add To Cart
+												</p>									
+											</button>
+									</div>
+								</div>
+								<div class="single-feature">
 								<div class="single-feature-txt text-center">
 									<p>
+									<%if(pdb.getProdRating("product19") == 5){ %>
+										<i class="fa fa-star"></i>
+										<i class="fa fa-star"></i>
+										<i class="fa fa-star"></i>
+										<i class="fa fa-star"></i>
+										<i class="fa fa-star"></i>
+										<span class="feature-review">(45 review)</span>
+									<%}else if(pdb.getProdRating("product19") == 4){ %>
 										<i class="fa fa-star"></i>
 										<i class="fa fa-star"></i>
 										<i class="fa fa-star"></i>
 										<i class="fa fa-star"></i>
 										<span class="spacial-feature-icon"><i class="fa fa-star"></i></span>
 										<span class="feature-review">(45 review)</span>
+									<%}else if(pdb.getProdRating("product19") == 3){ %>
+										<i class="fa fa-star"></i>
+										<i class="fa fa-star"></i>
+										<i class="fa fa-star"></i>																					
+										<span class="spacial-feature-icon"><i class="fa fa-star"></i></span>
+										<span class="spacial-feature-icon"><i class="fa fa-star"></i></span>
+										<span class="feature-review">(45 review)</span>
+									<%}else if(pdb.getProdRating("product19") == 2){ %>
+										<i class="fa fa-star"></i>
+										<i class="fa fa-star"></i>
+										<span class="spacial-feature-icon"><i class="fa fa-star"></i></span>
+										<span class="spacial-feature-icon"><i class="fa fa-star"></i></span>
+										<span class="spacial-feature-icon"><i class="fa fa-star"></i></span>
+										<span class="feature-review">(45 review)</span>
+									<%}else if(pdb.getProdRating("product19") == 1){ %>
+										<i class="fa fa-star"></i>
+										<span class="spacial-feature-icon"><i class="fa fa-star"></i></span>
+										<span class="spacial-feature-icon"><i class="fa fa-star"></i></span>
+										<span class="spacial-feature-icon"><i class="fa fa-star"></i></span>
+										<span class="spacial-feature-icon"><i class="fa fa-star"></i></span>
+										<span class="feature-review">(45 review)</span>
+									<%} %>
 									</p>
-									<h3><a href="#">modern arm chair</a></h3>
-									<h5>$299.00</h5>
 								</div>
+							</div>
+								<button type="submit" name="buttonProd" value="product19" form="formCart" >
+								<h4><%=pdb.getProdName("product19")%></h4>
+								</button>
+								<p class="arrival-product-price">₹<%=pdb.getProdPrice("product19")%></p>
+							</div>
+						</div>
+						<div class="col-md-3 col-sm-4">
+							<div class="single-new-arrival">
+								<div class="single-new-arrival-bg" style="margin-bottom: 10%">
+									<button type="submit" name="buttonProd" value="product20" form="formCart">										
+										<img src="<%=pdb.getProdImage1("product20")%>" alt="new-arrivals images">
+									</button>
+									<div class="sale bg-1">
+										<p>sale</p>
+									</div>
+									<div class="new-arrival-cart" style="padding-right: 15%">
+										
+											<button type="submit" name="buttonProdCart" value="product20" form="formAddToCart">										
+												<p >
+													<span class="lnr lnr-cart" ></span> 
+													Add To Cart
+												</p>									
+											</button>
+									</div>
+								</div>
+								<div class="single-feature">
+								<div class="single-feature-txt text-center">
+									<p>
+									<%if(pdb.getProdRating("product20") == 5){ %>
+										<i class="fa fa-star"></i>
+										<i class="fa fa-star"></i>
+										<i class="fa fa-star"></i>
+										<i class="fa fa-star"></i>
+										<i class="fa fa-star"></i>
+										<span class="feature-review">(45 review)</span>
+									<%}else if(pdb.getProdRating("product20") == 4){ %>
+										<i class="fa fa-star"></i>
+										<i class="fa fa-star"></i>
+										<i class="fa fa-star"></i>
+										<i class="fa fa-star"></i>
+										<span class="spacial-feature-icon"><i class="fa fa-star"></i></span>
+										<span class="feature-review">(45 review)</span>
+									<%}else if(pdb.getProdRating("product20") == 3){ %>
+										<i class="fa fa-star"></i>
+										<i class="fa fa-star"></i>
+										<i class="fa fa-star"></i>																					
+										<span class="spacial-feature-icon"><i class="fa fa-star"></i></span>
+										<span class="spacial-feature-icon"><i class="fa fa-star"></i></span>
+										<span class="feature-review">(45 review)</span>
+									<%}else if(pdb.getProdRating("product20") == 2){ %>
+										<i class="fa fa-star"></i>
+										<i class="fa fa-star"></i>
+										<span class="spacial-feature-icon"><i class="fa fa-star"></i></span>
+										<span class="spacial-feature-icon"><i class="fa fa-star"></i></span>
+										<span class="spacial-feature-icon"><i class="fa fa-star"></i></span>
+										<span class="feature-review">(45 review)</span>
+									<%}else if(pdb.getProdRating("product20") == 1){ %>
+										<i class="fa fa-star"></i>
+										<span class="spacial-feature-icon"><i class="fa fa-star"></i></span>
+										<span class="spacial-feature-icon"><i class="fa fa-star"></i></span>
+										<span class="spacial-feature-icon"><i class="fa fa-star"></i></span>
+										<span class="spacial-feature-icon"><i class="fa fa-star"></i></span>
+										<span class="feature-review">(45 review)</span>
+									<%} %>
+									</p>
+								</div>
+							</div>
+								<button type="submit" name="buttonProd" value="product20" form="formCart" >
+								<h4><%=pdb.getProdName("product20")%></h4>
+								</button>
+								<p class="arrival-product-price">₹<%=pdb.getProdPrice("product20")%></p>
+							</div>
+						</div>
+						<div class="col-md-3 col-sm-4">
+							<div class="single-new-arrival">
+								<div class="single-new-arrival-bg" style="margin-bottom: 10%">
+									<button type="submit" name="buttonProd" value="product21" form="formCart">										
+										<img src="<%=pdb.getProdImage1("product21")%>" alt="new-arrivals images">
+									</button>
+									<div class="sale bg-1">
+										<p>sale</p>
+									</div>
+									<div class="new-arrival-cart" style="padding-right: 15%">
+										
+											<button type="submit" name="buttonProdCart" value="product21" form="formAddToCart">										
+												<p >
+													<span class="lnr lnr-cart" ></span> 
+													Add To Cart
+												</p>									
+											</button>
+									</div>
+								</div>
+								<div class="single-feature">
+								<div class="single-feature-txt text-center">
+									<p>
+									<%if(pdb.getProdRating("product21") == 5){ %>
+										<i class="fa fa-star"></i>
+										<i class="fa fa-star"></i>
+										<i class="fa fa-star"></i>
+										<i class="fa fa-star"></i>
+										<i class="fa fa-star"></i>
+										<span class="feature-review">(45 review)</span>
+									<%}else if(pdb.getProdRating("product21") == 4){ %>
+										<i class="fa fa-star"></i>
+										<i class="fa fa-star"></i>
+										<i class="fa fa-star"></i>
+										<i class="fa fa-star"></i>
+										<span class="spacial-feature-icon"><i class="fa fa-star"></i></span>
+										<span class="feature-review">(45 review)</span>
+									<%}else if(pdb.getProdRating("product21") == 3){ %>
+										<i class="fa fa-star"></i>
+										<i class="fa fa-star"></i>
+										<i class="fa fa-star"></i>																					
+										<span class="spacial-feature-icon"><i class="fa fa-star"></i></span>
+										<span class="spacial-feature-icon"><i class="fa fa-star"></i></span>
+										<span class="feature-review">(45 review)</span>
+									<%}else if(pdb.getProdRating("product21") == 2){ %>
+										<i class="fa fa-star"></i>
+										<i class="fa fa-star"></i>
+										<span class="spacial-feature-icon"><i class="fa fa-star"></i></span>
+										<span class="spacial-feature-icon"><i class="fa fa-star"></i></span>
+										<span class="spacial-feature-icon"><i class="fa fa-star"></i></span>
+										<span class="feature-review">(45 review)</span>
+									<%}else if(pdb.getProdRating("product21") == 1){ %>
+										<i class="fa fa-star"></i>
+										<span class="spacial-feature-icon"><i class="fa fa-star"></i></span>
+										<span class="spacial-feature-icon"><i class="fa fa-star"></i></span>
+										<span class="spacial-feature-icon"><i class="fa fa-star"></i></span>
+										<span class="spacial-feature-icon"><i class="fa fa-star"></i></span>
+										<span class="feature-review">(45 review)</span>
+									<%} %>
+									</p>
+								</div>
+							</div>
+								<button type="submit" name="buttonProd" value="product21" form="formCart" >
+								<h4><%=pdb.getProdName("product21")%></h4>
+								</button>
+								<p class="arrival-product-price">₹<%=pdb.getProdPrice("product21")%></p>
+							</div>
+						</div>
+						<div class="col-md-3 col-sm-4">
+							<div class="single-new-arrival">
+								<div class="single-new-arrival-bg" style="margin-bottom: 10%">
+									<button type="submit" name="buttonProd" value="product22" form="formCart">										
+										<img src="<%=pdb.getProdImage1("product22")%>" alt="new-arrivals images">
+									</button>
+									<div class="sale bg-1">
+										<p>sale</p>
+									</div>
+									<div class="new-arrival-cart" style="padding-right: 15%">
+										
+											<button type="submit" name="buttonProdCart" value="product22" form="formAddToCart">										
+												<p >
+													<span class="lnr lnr-cart" ></span> 
+													Add To Cart
+												</p>									
+											</button>
+									</div>
+								</div>
+								<div class="single-feature">
+								<div class="single-feature-txt text-center">
+									<p>
+									<%if(pdb.getProdRating("product22") == 5){ %>
+										<i class="fa fa-star"></i>
+										<i class="fa fa-star"></i>
+										<i class="fa fa-star"></i>
+										<i class="fa fa-star"></i>
+										<i class="fa fa-star"></i>
+										<span class="feature-review">(45 review)</span>
+									<%}else if(pdb.getProdRating("product22") == 4){ %>
+										<i class="fa fa-star"></i>
+										<i class="fa fa-star"></i>
+										<i class="fa fa-star"></i>
+										<i class="fa fa-star"></i>
+										<span class="spacial-feature-icon"><i class="fa fa-star"></i></span>
+										<span class="feature-review">(45 review)</span>
+									<%}else if(pdb.getProdRating("product22") == 3){ %>
+										<i class="fa fa-star"></i>
+										<i class="fa fa-star"></i>
+										<i class="fa fa-star"></i>																					
+										<span class="spacial-feature-icon"><i class="fa fa-star"></i></span>
+										<span class="spacial-feature-icon"><i class="fa fa-star"></i></span>
+										<span class="feature-review">(45 review)</span>
+									<%}else if(pdb.getProdRating("product22") == 2){ %>
+										<i class="fa fa-star"></i>
+										<i class="fa fa-star"></i>
+										<span class="spacial-feature-icon"><i class="fa fa-star"></i></span>
+										<span class="spacial-feature-icon"><i class="fa fa-star"></i></span>
+										<span class="spacial-feature-icon"><i class="fa fa-star"></i></span>
+										<span class="feature-review">(45 review)</span>
+									<%}else if(pdb.getProdRating("product22") == 1){ %>
+										<i class="fa fa-star"></i>
+										<span class="spacial-feature-icon"><i class="fa fa-star"></i></span>
+										<span class="spacial-feature-icon"><i class="fa fa-star"></i></span>
+										<span class="spacial-feature-icon"><i class="fa fa-star"></i></span>
+										<span class="spacial-feature-icon"><i class="fa fa-star"></i></span>
+										<span class="feature-review">(45 review)</span>
+									<%} %>
+									</p>
+								</div>
+							</div>
+								<button type="submit" name="buttonProd" value="product22" form="formCart" >
+								<h4><%=pdb.getProdName("product22")%></h4>
+								</button>
+								<p class="arrival-product-price">₹<%=pdb.getProdPrice("product22")%></p>
+							</div>
+						</div>
+						<div class="col-md-3 col-sm-4">
+							<div class="single-new-arrival">
+								<div class="single-new-arrival-bg" style="margin-bottom: 10%">
+									<button type="submit" name="buttonProd" value="product23" form="formCart">										
+										<img src="<%=pdb.getProdImage1("product23")%>" alt="new-arrivals images">
+									</button>
+									<div class="sale bg-1">
+										<p>sale</p>
+									</div>
+									<div class="new-arrival-cart" style="padding-right: 15%">
+										
+											<button type="submit" name="buttonProdCart" value="product23" form="formAddToCart">										
+												<p >
+													<span class="lnr lnr-cart" ></span> 
+													Add To Cart
+												</p>									
+											</button>
+									</div>
+								</div>
+								<div class="single-feature">
+								<div class="single-feature-txt text-center">
+									<p>
+									<%if(pdb.getProdRating("product23") == 5){ %>
+										<i class="fa fa-star"></i>
+										<i class="fa fa-star"></i>
+										<i class="fa fa-star"></i>
+										<i class="fa fa-star"></i>
+										<i class="fa fa-star"></i>
+										<span class="feature-review">(45 review)</span>
+									<%}else if(pdb.getProdRating("product23") == 4){ %>
+										<i class="fa fa-star"></i>
+										<i class="fa fa-star"></i>
+										<i class="fa fa-star"></i>
+										<i class="fa fa-star"></i>
+										<span class="spacial-feature-icon"><i class="fa fa-star"></i></span>
+										<span class="feature-review">(45 review)</span>
+									<%}else if(pdb.getProdRating("product23") == 3){ %>
+										<i class="fa fa-star"></i>
+										<i class="fa fa-star"></i>
+										<i class="fa fa-star"></i>																					
+										<span class="spacial-feature-icon"><i class="fa fa-star"></i></span>
+										<span class="spacial-feature-icon"><i class="fa fa-star"></i></span>
+										<span class="feature-review">(45 review)</span>
+									<%}else if(pdb.getProdRating("product23") == 2){ %>
+										<i class="fa fa-star"></i>
+										<i class="fa fa-star"></i>
+										<span class="spacial-feature-icon"><i class="fa fa-star"></i></span>
+										<span class="spacial-feature-icon"><i class="fa fa-star"></i></span>
+										<span class="spacial-feature-icon"><i class="fa fa-star"></i></span>
+										<span class="feature-review">(45 review)</span>
+									<%}else if(pdb.getProdRating("product23") == 1){ %>
+										<i class="fa fa-star"></i>
+										<span class="spacial-feature-icon"><i class="fa fa-star"></i></span>
+										<span class="spacial-feature-icon"><i class="fa fa-star"></i></span>
+										<span class="spacial-feature-icon"><i class="fa fa-star"></i></span>
+										<span class="spacial-feature-icon"><i class="fa fa-star"></i></span>
+										<span class="feature-review">(45 review)</span>
+									<%} %>
+									</p>
+								</div>
+							</div>
+								<button type="submit" name="buttonProd" value="product23" form="formCart" >
+								<h4><%=pdb.getProdName("product23")%></h4>
+								</button>
+								<p class="arrival-product-price">₹<%=pdb.getProdPrice("product23")%></p>
+							</div>
+						</div>
+						<div class="col-md-3 col-sm-4">
+							<div class="single-new-arrival">
+								<div class="single-new-arrival-bg" style="margin-bottom: 10%">
+									<button type="submit" name="buttonProd" value="product24" form="formCart">										
+										<img src="<%=pdb.getProdImage1("product24")%>" alt="new-arrivals images">
+									</button>
+									<div class="sale bg-1">
+										<p>sale</p>
+									</div>
+									<div class="new-arrival-cart" style="padding-right: 15%">
+										
+											<button type="submit" name="buttonProdCart" value="product24" form="formAddToCart">										
+												<p >
+													<span class="lnr lnr-cart" ></span> 
+													Add To Cart
+												</p>									
+											</button>
+									</div>
+								</div>
+								<div class="single-feature">
+								<div class="single-feature-txt text-center">
+									<p>
+									<%if(pdb.getProdRating("product24") == 5){ %>
+										<i class="fa fa-star"></i>
+										<i class="fa fa-star"></i>
+										<i class="fa fa-star"></i>
+										<i class="fa fa-star"></i>
+										<i class="fa fa-star"></i>
+										<span class="feature-review">(45 review)</span>
+									<%}else if(pdb.getProdRating("product24") == 4){ %>
+										<i class="fa fa-star"></i>
+										<i class="fa fa-star"></i>
+										<i class="fa fa-star"></i>
+										<i class="fa fa-star"></i>
+										<span class="spacial-feature-icon"><i class="fa fa-star"></i></span>
+										<span class="feature-review">(45 review)</span>
+									<%}else if(pdb.getProdRating("product24") == 3){ %>
+										<i class="fa fa-star"></i>
+										<i class="fa fa-star"></i>
+										<i class="fa fa-star"></i>																					
+										<span class="spacial-feature-icon"><i class="fa fa-star"></i></span>
+										<span class="spacial-feature-icon"><i class="fa fa-star"></i></span>
+										<span class="feature-review">(45 review)</span>
+									<%}else if(pdb.getProdRating("product24") == 2){ %>
+										<i class="fa fa-star"></i>
+										<i class="fa fa-star"></i>
+										<span class="spacial-feature-icon"><i class="fa fa-star"></i></span>
+										<span class="spacial-feature-icon"><i class="fa fa-star"></i></span>
+										<span class="spacial-feature-icon"><i class="fa fa-star"></i></span>
+										<span class="feature-review">(45 review)</span>
+									<%}else if(pdb.getProdRating("product24") == 1){ %>
+										<i class="fa fa-star"></i>
+										<span class="spacial-feature-icon"><i class="fa fa-star"></i></span>
+										<span class="spacial-feature-icon"><i class="fa fa-star"></i></span>
+										<span class="spacial-feature-icon"><i class="fa fa-star"></i></span>
+										<span class="spacial-feature-icon"><i class="fa fa-star"></i></span>
+										<span class="feature-review">(45 review)</span>
+									<%} %>
+									</p>
+								</div>
+							</div>
+								<button type="submit" name="buttonProd" value="product24" form="formCart" >
+								<h4><%=pdb.getProdName("product24")%></h4>
+								</button>
+								<p class="arrival-product-price">₹<%=pdb.getProdPrice("product24")%></p>
+							</div>
+						</div>
+						<div class="col-md-3 col-sm-4">
+							<div class="single-new-arrival">
+								<div class="single-new-arrival-bg" style="margin-bottom: 10%">
+									<button type="submit" name="buttonProd" value="product25" form="formCart">										
+										<img src="<%=pdb.getProdImage1("product25")%>" alt="new-arrivals images">
+									</button>
+									<div class="sale bg-1">
+										<p>sale</p>
+									</div>
+									<div class="new-arrival-cart" style="padding-right: 15%">
+										
+											<button type="submit" name="buttonProdCart" value="product25" form="formAddToCart">										
+												<p >
+													<span class="lnr lnr-cart" ></span> 
+													Add To Cart
+												</p>									
+											</button>
+									</div>
+								</div>
+								<div class="single-feature">
+								<div class="single-feature-txt text-center">
+									<p>
+									<%if(pdb.getProdRating("product25") == 5){ %>
+										<i class="fa fa-star"></i>
+										<i class="fa fa-star"></i>
+										<i class="fa fa-star"></i>
+										<i class="fa fa-star"></i>
+										<i class="fa fa-star"></i>
+										<span class="feature-review">(45 review)</span>
+									<%}else if(pdb.getProdRating("product25") == 4){ %>
+										<i class="fa fa-star"></i>
+										<i class="fa fa-star"></i>
+										<i class="fa fa-star"></i>
+										<i class="fa fa-star"></i>
+										<span class="spacial-feature-icon"><i class="fa fa-star"></i></span>
+										<span class="feature-review">(45 review)</span>
+									<%}else if(pdb.getProdRating("product25") == 3){ %>
+										<i class="fa fa-star"></i>
+										<i class="fa fa-star"></i>
+										<i class="fa fa-star"></i>																					
+										<span class="spacial-feature-icon"><i class="fa fa-star"></i></span>
+										<span class="spacial-feature-icon"><i class="fa fa-star"></i></span>
+										<span class="feature-review">(45 review)</span>
+									<%}else if(pdb.getProdRating("product25") == 2){ %>
+										<i class="fa fa-star"></i>
+										<i class="fa fa-star"></i>
+										<span class="spacial-feature-icon"><i class="fa fa-star"></i></span>
+										<span class="spacial-feature-icon"><i class="fa fa-star"></i></span>
+										<span class="spacial-feature-icon"><i class="fa fa-star"></i></span>
+										<span class="feature-review">(45 review)</span>
+									<%}else if(pdb.getProdRating("product25") == 1){ %>
+										<i class="fa fa-star"></i>
+										<span class="spacial-feature-icon"><i class="fa fa-star"></i></span>
+										<span class="spacial-feature-icon"><i class="fa fa-star"></i></span>
+										<span class="spacial-feature-icon"><i class="fa fa-star"></i></span>
+										<span class="spacial-feature-icon"><i class="fa fa-star"></i></span>
+										<span class="feature-review">(45 review)</span>
+									<%} %>
+									</p>
+								</div>
+							</div>
+								<button type="submit" name="buttonProd" value="product25" form="formCart" >
+								<h4><%=pdb.getProdName("product25")%></h4>
+								</button>
+								<p class="arrival-product-price">₹<%=pdb.getProdPrice("product25")%></p>
+							</div>
+						</div>
+						<div class="col-md-3 col-sm-4">
+							<div class="single-new-arrival">
+								<div class="single-new-arrival-bg" style="margin-bottom: 10%">
+									<button type="submit" name="buttonProd" value="product26" form="formCart">										
+										<img src="<%=pdb.getProdImage1("product26")%>" alt="new-arrivals images">
+									</button>
+									<div class="sale bg-1">
+										<p>sale</p>
+									</div>
+									<div class="new-arrival-cart" style="padding-right: 15%">
+										
+											<button type="submit" name="buttonProdCart" value="product26" form="formAddToCart">										
+												<p >
+													<span class="lnr lnr-cart" ></span> 
+													Add To Cart
+												</p>									
+											</button>
+									</div>
+								</div>
+								<div class="single-feature">
+								<div class="single-feature-txt text-center">
+									<p>
+									<%if(pdb.getProdRating("product26") == 5){ %>
+										<i class="fa fa-star"></i>
+										<i class="fa fa-star"></i>
+										<i class="fa fa-star"></i>
+										<i class="fa fa-star"></i>
+										<i class="fa fa-star"></i>
+										<span class="feature-review">(45 review)</span>
+									<%}else if(pdb.getProdRating("product26") == 4){ %>
+										<i class="fa fa-star"></i>
+										<i class="fa fa-star"></i>
+										<i class="fa fa-star"></i>
+										<i class="fa fa-star"></i>
+										<span class="spacial-feature-icon"><i class="fa fa-star"></i></span>
+										<span class="feature-review">(45 review)</span>
+									<%}else if(pdb.getProdRating("product26") == 3){ %>
+										<i class="fa fa-star"></i>
+										<i class="fa fa-star"></i>
+										<i class="fa fa-star"></i>																					
+										<span class="spacial-feature-icon"><i class="fa fa-star"></i></span>
+										<span class="spacial-feature-icon"><i class="fa fa-star"></i></span>
+										<span class="feature-review">(45 review)</span>
+									<%}else if(pdb.getProdRating("product26") == 2){ %>
+										<i class="fa fa-star"></i>
+										<i class="fa fa-star"></i>
+										<span class="spacial-feature-icon"><i class="fa fa-star"></i></span>
+										<span class="spacial-feature-icon"><i class="fa fa-star"></i></span>
+										<span class="spacial-feature-icon"><i class="fa fa-star"></i></span>
+										<span class="feature-review">(45 review)</span>
+									<%}else if(pdb.getProdRating("product26") == 1){ %>
+										<i class="fa fa-star"></i>
+										<span class="spacial-feature-icon"><i class="fa fa-star"></i></span>
+										<span class="spacial-feature-icon"><i class="fa fa-star"></i></span>
+										<span class="spacial-feature-icon"><i class="fa fa-star"></i></span>
+										<span class="spacial-feature-icon"><i class="fa fa-star"></i></span>
+										<span class="feature-review">(45 review)</span>
+									<%} %>
+									</p>
+								</div>
+							</div>
+								<button type="submit" name="buttonProd" value="product26" form="formCart" >
+								<h4><%=pdb.getProdName("product26")%></h4>
+								</button>
+								<p class="arrival-product-price">₹<%=pdb.getProdPrice("product26")%></p>
+							</div>
+						</div>
+						<div class="col-md-3 col-sm-4">
+							<div class="single-new-arrival">
+								<div class="single-new-arrival-bg" style="margin-bottom: 10%">
+									<button type="submit" name="buttonProd" value="product27" form="formCart">										
+										<img src="<%=pdb.getProdImage1("product27")%>" alt="new-arrivals images">
+									</button>
+									<div class="sale bg-1">
+										<p>sale</p>
+									</div>
+									<div class="new-arrival-cart" style="padding-right: 15%">
+										
+											<button type="submit" name="buttonProdCart" value="product27" form="formAddToCart">										
+												<p >
+													<span class="lnr lnr-cart" ></span> 
+													Add To Cart
+												</p>									
+											</button>
+									</div>
+								</div>
+								<div class="single-feature">
+								<div class="single-feature-txt text-center">
+									<p>
+									<%if(pdb.getProdRating("product27") == 5){ %>
+										<i class="fa fa-star"></i>
+										<i class="fa fa-star"></i>
+										<i class="fa fa-star"></i>
+										<i class="fa fa-star"></i>
+										<i class="fa fa-star"></i>
+										<span class="feature-review">(45 review)</span>
+									<%}else if(pdb.getProdRating("product27") == 4){ %>
+										<i class="fa fa-star"></i>
+										<i class="fa fa-star"></i>
+										<i class="fa fa-star"></i>
+										<i class="fa fa-star"></i>
+										<span class="spacial-feature-icon"><i class="fa fa-star"></i></span>
+										<span class="feature-review">(45 review)</span>
+									<%}else if(pdb.getProdRating("product27") == 3){ %>
+										<i class="fa fa-star"></i>
+										<i class="fa fa-star"></i>
+										<i class="fa fa-star"></i>																					
+										<span class="spacial-feature-icon"><i class="fa fa-star"></i></span>
+										<span class="spacial-feature-icon"><i class="fa fa-star"></i></span>
+										<span class="feature-review">(45 review)</span>
+									<%}else if(pdb.getProdRating("product27") == 2){ %>
+										<i class="fa fa-star"></i>
+										<i class="fa fa-star"></i>
+										<span class="spacial-feature-icon"><i class="fa fa-star"></i></span>
+										<span class="spacial-feature-icon"><i class="fa fa-star"></i></span>
+										<span class="spacial-feature-icon"><i class="fa fa-star"></i></span>
+										<span class="feature-review">(45 review)</span>
+									<%}else if(pdb.getProdRating("product27") == 1){ %>
+										<i class="fa fa-star"></i>
+										<span class="spacial-feature-icon"><i class="fa fa-star"></i></span>
+										<span class="spacial-feature-icon"><i class="fa fa-star"></i></span>
+										<span class="spacial-feature-icon"><i class="fa fa-star"></i></span>
+										<span class="spacial-feature-icon"><i class="fa fa-star"></i></span>
+										<span class="feature-review">(45 review)</span>
+									<%} %>
+									</p>
+								</div>
+							</div>
+								<button type="submit" name="buttonProd" value="product27" form="formCart" >
+								<h4><%=pdb.getProdName("product27")%></h4>
+								</button>
+								<p class="arrival-product-price">₹<%=pdb.getProdPrice("product27")%></p>
+							</div>
+						</div>
+						<div class="col-md-3 col-sm-4">
+							<div class="single-new-arrival">
+								<div class="single-new-arrival-bg" style="margin-bottom: 10%">
+									<button type="submit" name="buttonProd" value="product28" form="formCart">										
+										<img src="<%=pdb.getProdImage1("product28")%>" alt="new-arrivals images">
+									</button>
+									<div class="sale bg-1">
+										<p>sale</p>
+									</div>
+									<div class="new-arrival-cart" style="padding-right: 15%">
+										
+											<button type="submit" name="buttonProdCart" value="product28" form="formAddToCart">										
+												<p >
+													<span class="lnr lnr-cart" ></span> 
+													Add To Cart
+												</p>									
+											</button>
+									</div>
+								</div>
+								<div class="single-feature">
+								<div class="single-feature-txt text-center">
+									<p>
+									<%if(pdb.getProdRating("product28") == 5){ %>
+										<i class="fa fa-star"></i>
+										<i class="fa fa-star"></i>
+										<i class="fa fa-star"></i>
+										<i class="fa fa-star"></i>
+										<i class="fa fa-star"></i>
+										<span class="feature-review">(45 review)</span>
+									<%}else if(pdb.getProdRating("product28") == 4){ %>
+										<i class="fa fa-star"></i>
+										<i class="fa fa-star"></i>
+										<i class="fa fa-star"></i>
+										<i class="fa fa-star"></i>
+										<span class="spacial-feature-icon"><i class="fa fa-star"></i></span>
+										<span class="feature-review">(45 review)</span>
+									<%}else if(pdb.getProdRating("product28") == 3){ %>
+										<i class="fa fa-star"></i>
+										<i class="fa fa-star"></i>
+										<i class="fa fa-star"></i>																					
+										<span class="spacial-feature-icon"><i class="fa fa-star"></i></span>
+										<span class="spacial-feature-icon"><i class="fa fa-star"></i></span>
+										<span class="feature-review">(45 review)</span>
+									<%}else if(pdb.getProdRating("product28") == 2){ %>
+										<i class="fa fa-star"></i>
+										<i class="fa fa-star"></i>
+										<span class="spacial-feature-icon"><i class="fa fa-star"></i></span>
+										<span class="spacial-feature-icon"><i class="fa fa-star"></i></span>
+										<span class="spacial-feature-icon"><i class="fa fa-star"></i></span>
+										<span class="feature-review">(45 review)</span>
+									<%}else if(pdb.getProdRating("product28") == 1){ %>
+										<i class="fa fa-star"></i>
+										<span class="spacial-feature-icon"><i class="fa fa-star"></i></span>
+										<span class="spacial-feature-icon"><i class="fa fa-star"></i></span>
+										<span class="spacial-feature-icon"><i class="fa fa-star"></i></span>
+										<span class="spacial-feature-icon"><i class="fa fa-star"></i></span>
+										<span class="feature-review">(45 review)</span>
+									<%} %>
+									</p>
+								</div>
+							</div>
+								<button type="submit" name="buttonProd" value="product28" form="formCart" >
+								<h4><%=pdb.getProdName("product28")%></h4>
+								</button>
+								<p class="arrival-product-price">₹<%=pdb.getProdPrice("product28")%></p>
 							</div>
 						</div>
 					</div>
