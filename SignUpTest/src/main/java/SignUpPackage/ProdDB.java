@@ -3,8 +3,8 @@ import java.sql.*;
 import java.util.LinkedList;
 import java.util.List;
 public class ProdDB {
-	Connection con;
-	Statement s;
+	static Connection con;
+	static Statement s;
 	ResultSet rs;
 	
 	public ProdDB() {
@@ -55,37 +55,58 @@ public class ProdDB {
 		
 	}
 	
-	public boolean checkIfProdExistsInDB(String pName) {        //imma use for search results
+	public ResultSet getAllProducts() throws SQLException {
+		rs = s.executeQuery("SELECT * FROM PRODUCTS");	
+		return rs;
+	}
+	
+	public ResultSet getCorrectProduct(String pName) throws SQLException {
+		rs = s.executeQuery("SELECT * FROM PRODUCTS WHERE PRODNAME = \'" + pName + "\'");
+		return rs;
+	}
+	
+	public ResultSet getSimilarProducts(String pName) throws SQLException {
+		rs = s.executeQuery("SELECT * FROM PRODUCTS WHERE PRODNAME LIKE \'" + pName.substring(0,3) + "%\'");	
+		return rs;
+
+	}
+	
+	public ResultSet checkIfProdExistsInDB(String pName) {        //imma use for search results
 		boolean flag = false;
 		try {
 			System.out.println(pName);
-			rs = s.executeQuery("SELECT PRODNAME FROM PRODUCTS");
-			
+			rs = s.executeQuery("SELECT * FROM PRODUCTS WHERE PRODNAME = \'" + pName + "\'");	
 			int x = 0;
 			while(rs.next())
 				x++;
 			if(x==0) 
-				return false;
-			
+				System.out.println("Not found, viewing similar results");
+			else {
+				System.out.println("Product found directly");
+				rs.beforeFirst();
+				return rs;
+			}
+
 			rs.beforeFirst();
-			while(rs.next()) {
-				String testName;
-				String compareName = pName.toLowerCase();
-				testName = rs.getString(1).toLowerCase();
-				if(testName.equals(compareName)) {
-					System.out.println("exists");
-					return true;
-				}
-				else {
-					System.out.println("Does not exist");
-					flag = false;
-				}
+			
+			rs = s.executeQuery("SELECT * FROM PRODUCTS WHERE PRODNAME LIKE \'" + pName.substring(0,3) + "%\'");	
+			x = 0;
+			while(rs.next())
+				x++;
+			if(x==0) {
+				System.out.println("Not found at all");
+				return null;
+			}
+			else {
+				System.out.println("Found similar results");
+				rs.beforeFirst();
+				return rs;
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		return flag;
+		return rs;
 	}
 	
 	

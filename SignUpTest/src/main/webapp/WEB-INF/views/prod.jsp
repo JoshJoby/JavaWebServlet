@@ -4,7 +4,6 @@
 <%@page import="SignUpPackage.ProdDB"  %>
 <%@page import="SignUpPackage.HomeServlet"  %>
 <%@page import="SignUpPackage.CartDB"  %>
-<%@page import="SignUpPackage.CartDBModel"  %>
 
 
 
@@ -67,9 +66,6 @@
 				            </div>
 				        </div>
 				        <!-- End Top Search -->
-						<%
-							System.out.println((request.getAttribute("product").toString()));
-							%>
 				        <div class="container">            
 				            <!-- Start Atribute Navigation -->
 				            <div class="attr-nav">
@@ -132,6 +128,7 @@
 				    <!-- End Navigation -->
 				</div><!--/.header-area-->
 			    <div class="clearfix"></div>
+			</div><!--/#header-carousel-->
 
 			</div>
 </header>

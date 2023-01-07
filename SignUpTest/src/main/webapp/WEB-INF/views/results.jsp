@@ -3,6 +3,9 @@
 <%@page import="SignUpPackage.SignInServlet" %>
 <%@page import="SignUpPackage.ProdDB"  %>
 <%@page import="SignUpPackage.HomeServlet"  %>
+<%@page import="SignUpPackage.ProdModel"  %>
+<%@page import="java.util.LinkedList"  %>
+
 <%@page import="java.sql.*" %>
 
 <!DOCTYPE html>
@@ -248,27 +251,16 @@ body {
 				    <!-- End Navigation -->
 				</div><!--/.header-area-->
 			    <div class="clearfix"></div>
+			</div><!--/#header-carousel-->
 
 			</div>
 </header>
 
 <form role="search" class="search-form" id="search-form" action="#" method="post">
   
-  <section class="search-terms">
-    <label for="search-term" class="search-term-label screen-reader-text">Search Terms</label>
-    <div>
-      <span class="search-term-wrap">
-        <input type="search" id="search-term" class="search-term">
-      </span>
-      <span class="search-term-button-wrap">
-        <input type="submit" value="Search" class="search-button">
-      </span>
-    </div>
-  </section>
-
   <section class="search-filters" id="search-filters">
     
-    <h3 class="search-filters-title" id="search-filters-title">Search Filters</h3>
+    <h4 class="search-filters-title" id="search-filters-title">Search filters</h4>
     
     <div class="size-filters filter-group">
     
@@ -312,42 +304,31 @@ body {
   </section>
 </form>
 
-<section class="search-results">
+<section class="search-results" style="margin-left: 50%; margin-top: -28%;">
 <% 
-Connection con;
-Statement s;
-ResultSet rs;
-Class.forName("com.mysql.cj.jdbc.Driver");
-con = DriverManager.getConnection(
-		"jdbc:mysql://localhost:3306/USERDB1", "root", "root");
-s = con.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
-ProdDB pdb = new ProdDB();
-try {
-	rs = s.executeQuery("SELECT * FROM PRODUCTS");
-	int x = 0;
-	while(rs.next())	
-	{
+		LinkedList<ProdModel> searchResultsInPage = (LinkedList<ProdModel>)request.getAttribute("searchResults");
+		for(ProdModel prodmodel : searchResultsInPage)	
+		{
 	%>
-  <div class="result">
-  <img src="<%=pdb.getProdImage1(rs.getString(1))%>">
-  </div>
-    <div class="result">
-  <img src="<%=pdb.getProdImage2(rs.getString(1))%>">
-  </div>
-    <div class="result">
-  <img src="<%=pdb.getProdImage3(rs.getString(1))%>">
-  </div>
-<%}
-}catch (SQLException e) {
-	// TODO Auto-generated catch block
-	e.printStackTrace();
-}
+	  <div class="result">
+	  <img src="<%=prodmodel.getProdImage()%>">
+	  </div>
+	  <%//x1 = rs.next();%>
+	    <div class="result">
+	  <img src="<%=prodmodel.getProdImage2()%>">
+	  </div>
+	  <%//x1 = rs.next();%>
+	    <div class="result">
+	  <img src="<%=prodmodel.getProdImage3()%>">
+	  </div>
+	<%
+	}
+	request.removeAttribute("searchResults");
 %>
-
 </section>
   
-<section id="feature" class="feature">
-			<div class="container">
+<section id="feature" class="feature" style="margin-top: 30%">
+			<div class="container"> 
 				<div class="section-header">
 					<h2>featured products</h2>
 				</div><!--/.section-header-->
