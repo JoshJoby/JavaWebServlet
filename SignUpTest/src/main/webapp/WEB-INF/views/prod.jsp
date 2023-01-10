@@ -7,7 +7,13 @@
 
 
 
-<%ProdDB pdb = new ProdDB(); %>
+<%ProdDB pdb = new ProdDB(); 
+String formName1 = "formAddToCart";
+String formName2 = "formNotLoggedIn";
+String btnName1 = "buttonProdCart";
+String btnName2 = "buttonNotLoggedIn";
+
+%>
 <!doctype html>   
 <html lang="en">
 <head>
@@ -26,6 +32,7 @@
 
         <!--linear icon css-->
 		<link rel="stylesheet" href="assets/css/linearicons.css">
+		<link rel="stylesheet" href="assets/css/buttonStyles.css">
 
 		<!--animate.css-->
         <link rel="stylesheet" href="assets/css/animate.css">
@@ -48,33 +55,19 @@
 </head>
 <body>
 
-<header style="background: #ffffff;" id="home" class="welcome-hero">
+<header style="background: #ffffff;" id="home">
+		<form id="formCart" action="prod.jsp" method="get"></form>
+
 <div id="header-carousel" class="carousel slide carousel-fade" data-ride="carousel">
 	<div class="top-area">
 				<div class="header-area">
 					<!-- Start Navigation -->
-				    <nav class="navbar navbar-default bootsnav  navbar-sticky navbar-scrollspy"  data-minus-value-desktop="70" data-minus-value-mobile="55" data-speed="1000">
-
-				        <!-- Start Top Search -->
-				        <div class="top-search">
-				            <div class="container">
-				                <div class="input-group">
-				                    <span class="input-group-addon"><i class="fa fa-search"></i></span>
-				                    <input type="text" class="form-control" placeholder="Search">
-				                    <span class="input-group-addon close-search"><i class="fa fa-times"></i></span>
-				                </div>
-				            </div>
-				        </div>
+				    <nav class="navbar navbar-default bootsnav navbar-scrollspy"  data-minus-value-desktop="70" data-minus-value-mobile="55" data-speed="1000">
 				        <!-- End Top Search -->
 				        <div class="container">            
 				            <!-- Start Atribute Navigation -->
 				            <div class="attr-nav">
-				                <ul>
-				                	<li class="search">
-				                		<a href="#">
-				                		<p style="font-size: 12px">Search</p>
-				                		</a>
-				                	</li><!--/.search-->				                	
+				                <ul>			                	
 				                	<li class="nav-setting">
 									<a href="SignUp.jsp" class="addMore" title="Sign in!"><p style="font-size: 12px">Sign in</p></a>
 				                	</li><!--/.search-->
@@ -192,12 +185,14 @@
             </div>
             <!-- Description -->
             <hr>
-            <form name="formAddToCart" action="Redirect.jsp" method="get">
-                <button type="submit" name="buttonProdCart" value=<%=request.getAttribute("product")%>>
+			<form id="formAddToCart" action="Redirect.jsp" method="get"></form>
+			<form id="formNotLoggedIn" action="#popup1" method="get"></form>
+				<button type="submit" name="<%=((SignInServlet.isLoggedIn) ? btnName1 : btnName2)%>" form="<%=((SignInServlet.isLoggedIn) ? formName1 : formName2)%>" value=<%=request.getAttribute("product")%>>
 	        		<img width="150" height="125" src="https://www.paypalobjects.com/en_US/i/btn/btn_cart_LG.gif">
 	        	</button>
+    	
     			<img alt="" width="3" height="3"
-        			src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" ></form>
+        			src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" >
         </div>
     </section>
 
@@ -222,7 +217,9 @@
 									</div>
 									<div class="new-arrival-cart" style="padding-right: 15%">
 										
-											<button type="submit" name="buttonProdCart" value="product17" form="formAddToCart">										
+											<button type="submit" name="<%=((SignInServlet.isLoggedIn) ? btnName1 : btnName2)%>" 
+											form="<%=((SignInServlet.isLoggedIn) ? formName1 : formName2)%>" 
+											value="<%=((SignInServlet.isLoggedIn) ? "product17" : request.getAttribute("product"))%>">										
 												<p >
 													<span class="lnr lnr-cart" ></span> 
 													Add To Cart
@@ -289,8 +286,9 @@
 									</div>
 									<div class="new-arrival-cart" style="padding-right: 15%">
 										
-											<button type="submit" name="buttonProdCart" value="product18" form="formAddToCart">										
-												<p >
+											<button type="submit" name="<%=((SignInServlet.isLoggedIn) ? btnName1 : btnName2)%>" 
+											form="<%=((SignInServlet.isLoggedIn) ? formName1 : formName2)%>" 
+											value="<%=((SignInServlet.isLoggedIn) ? "product18" : request.getAttribute("product"))%>">												<p >
 													<span class="lnr lnr-cart" ></span> 
 													Add To Cart
 												</p>									
@@ -356,8 +354,9 @@
 									</div>
 									<div class="new-arrival-cart" style="padding-right: 15%">
 										
-											<button type="submit" name="buttonProdCart" value="product19" form="formAddToCart">										
-												<p >
+											<button type="submit" name="<%=((SignInServlet.isLoggedIn) ? btnName1 : btnName2)%>" 
+											form="<%=((SignInServlet.isLoggedIn) ? formName1 : formName2)%>" 
+											value="<%=((SignInServlet.isLoggedIn) ? "product19" : request.getAttribute("product"))%>">												<p >
 													<span class="lnr lnr-cart" ></span> 
 													Add To Cart
 												</p>									
@@ -423,8 +422,9 @@
 									</div>
 									<div class="new-arrival-cart" style="padding-right: 15%">
 										
-											<button type="submit" name="buttonProdCart" value="product20" form="formAddToCart">										
-												<p >
+											<button type="submit" name="<%=((SignInServlet.isLoggedIn) ? btnName1 : btnName2)%>" 
+											form="<%=((SignInServlet.isLoggedIn) ? formName1 : formName2)%>" 
+											value="<%=((SignInServlet.isLoggedIn) ? "product20" : request.getAttribute("product"))%>">												<p >
 													<span class="lnr lnr-cart" ></span> 
 													Add To Cart
 												</p>									
@@ -490,8 +490,9 @@
 									</div>
 									<div class="new-arrival-cart" style="padding-right: 15%">
 										
-											<button type="submit" name="buttonProdCart" value="product21" form="formAddToCart">										
-												<p >
+											<button type="submit" name="<%=((SignInServlet.isLoggedIn) ? btnName1 : btnName2)%>" 
+											form="<%=((SignInServlet.isLoggedIn) ? formName1 : formName2)%>" 
+											value="<%=((SignInServlet.isLoggedIn) ? "product21" : request.getAttribute("product"))%>">													<p >
 													<span class="lnr lnr-cart" ></span> 
 													Add To Cart
 												</p>									
@@ -557,8 +558,9 @@
 									</div>
 									<div class="new-arrival-cart" style="padding-right: 15%">
 										
-											<button type="submit" name="buttonProdCart" value="product22" form="formAddToCart">										
-												<p >
+											<button type="submit" name="<%=((SignInServlet.isLoggedIn) ? btnName1 : btnName2)%>" 
+											form="<%=((SignInServlet.isLoggedIn) ? formName1 : formName2)%>" 
+											value="<%=((SignInServlet.isLoggedIn) ? "product22" : request.getAttribute("product"))%>">													<p >
 													<span class="lnr lnr-cart" ></span> 
 													Add To Cart
 												</p>									
@@ -624,8 +626,9 @@
 									</div>
 									<div class="new-arrival-cart" style="padding-right: 15%">
 										
-											<button type="submit" name="buttonProdCart" value="product23" form="formAddToCart">										
-												<p >
+											<button type="submit" name="<%=((SignInServlet.isLoggedIn) ? btnName1 : btnName2)%>" 
+											form="<%=((SignInServlet.isLoggedIn) ? formName1 : formName2)%>" 
+											value="<%=((SignInServlet.isLoggedIn) ? "product23" : request.getAttribute("product"))%>">													<p >
 													<span class="lnr lnr-cart" ></span> 
 													Add To Cart
 												</p>									
@@ -691,8 +694,9 @@
 									</div>
 									<div class="new-arrival-cart" style="padding-right: 15%">
 										
-											<button type="submit" name="buttonProdCart" value="product24" form="formAddToCart">										
-												<p >
+											<button type="submit" name="<%=((SignInServlet.isLoggedIn) ? btnName1 : btnName2)%>" 
+											form="<%=((SignInServlet.isLoggedIn) ? formName1 : formName2)%>" 
+											value="<%=((SignInServlet.isLoggedIn) ? "product24" : request.getAttribute("product"))%>">													<p >
 													<span class="lnr lnr-cart" ></span> 
 													Add To Cart
 												</p>									
@@ -758,8 +762,9 @@
 									</div>
 									<div class="new-arrival-cart" style="padding-right: 15%">
 										
-											<button type="submit" name="buttonProdCart" value="product25" form="formAddToCart">										
-												<p >
+											<button type="submit" name="<%=((SignInServlet.isLoggedIn) ? btnName1 : btnName2)%>" 
+											form="<%=((SignInServlet.isLoggedIn) ? formName1 : formName2)%>" 
+											value="<%=((SignInServlet.isLoggedIn) ? "product25" : request.getAttribute("product"))%>">													<p >
 													<span class="lnr lnr-cart" ></span> 
 													Add To Cart
 												</p>									
@@ -825,8 +830,9 @@
 									</div>
 									<div class="new-arrival-cart" style="padding-right: 15%">
 										
-											<button type="submit" name="buttonProdCart" value="product26" form="formAddToCart">										
-												<p >
+											<button type="submit" name="<%=((SignInServlet.isLoggedIn) ? btnName1 : btnName2)%>" 
+											form="<%=((SignInServlet.isLoggedIn) ? formName1 : formName2)%>" 
+											value="<%=((SignInServlet.isLoggedIn) ? "product26" : request.getAttribute("product"))%>">													<p >
 													<span class="lnr lnr-cart" ></span> 
 													Add To Cart
 												</p>									
@@ -892,8 +898,9 @@
 									</div>
 									<div class="new-arrival-cart" style="padding-right: 15%">
 										
-											<button type="submit" name="buttonProdCart" value="product27" form="formAddToCart">										
-												<p >
+											<button type="submit" name="<%=((SignInServlet.isLoggedIn) ? btnName1 : btnName2)%>" 
+											form="<%=((SignInServlet.isLoggedIn) ? formName1 : formName2)%>" 
+											value="<%=((SignInServlet.isLoggedIn) ? "product27" : request.getAttribute("product"))%>">													<p >
 													<span class="lnr lnr-cart" ></span> 
 													Add To Cart
 												</p>									
@@ -959,8 +966,9 @@
 									</div>
 									<div class="new-arrival-cart" style="padding-right: 15%">
 										
-											<button type="submit" name="buttonProdCart" value="product28" form="formAddToCart">										
-												<p >
+											<button type="submit" name="<%=((SignInServlet.isLoggedIn) ? btnName1 : btnName2)%>" 
+											form="<%=((SignInServlet.isLoggedIn) ? formName1 : formName2)%>" 
+											value="<%=((SignInServlet.isLoggedIn) ? "product28" : request.getAttribute("product"))%>">													<p >
 													<span class="lnr lnr-cart" ></span> 
 													Add To Cart
 												</p>									
@@ -1082,7 +1090,20 @@
 			
 		</section><!--/.blog-->
 		<!--blog end -->
-
+		<div id="popup1" class="overlay" style="padding-top:15%;">
+			<div class="popup">
+				<h2>Alert!</h2>
+				&nbsp;
+				<a class="close " href="#home">&times;</a>
+				<div class="content">
+					To access the cart, you must log in, so that any changes to the cart will be autosaved.
+					<br><br>
+					<button class="btn-cart" style="margin-left: 40%">
+					<a href="SignUp.jsp" title="Sign in!"><p style="font-size: 15px; color: white">Sign in</p></a>
+					</button>
+					</div>
+			</div>
+		</div>
 		<!-- clients strat -->
 		<section id="clients"  class="clients">
 			<div class="container">

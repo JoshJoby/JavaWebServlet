@@ -4,13 +4,16 @@ import SignUpPackage.CartModel;
 import java.util.LinkedList;
 import java.util.List;
 import jakarta.servlet.http.HttpServletRequest;
+import SignUpPackage.UserDB;
 public class CartDB {
 	Connection con;
 	Statement s;
 	ResultSet rs;
+	public static String totalCost;
    	public static LinkedList<CartModel> existingProds = new LinkedList<CartModel>();
 
 	public CartDB() {
+		UserDB udb = new UserDB();
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
 			con = DriverManager.getConnection(
@@ -18,12 +21,14 @@ public class CartDB {
 			s = con.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
 			s.executeUpdate("CREATE DATABASE IF NOT EXISTS USERDB1");
 			s.executeUpdate("USE USERDB1");
+			System.out.println("Creating cart table");
+			
 			s.executeUpdate("CREATE TABLE IF NOT EXISTS CART(EMAIL VARCHAR(30), PRODID VARCHAR(30), "
 					+ "PRODNAME VARCHAR(30), PRODCOST FLOAT(9,2), PRODIMAGE1 VARCHAR(100), PRODQUANTITY INT, "
 					+ "PRODDESC VARCHAR(255), PRODCATEGORY VARCHAR(50), PRODTOTALCOST FLOAT(9,2), PRODSELECTEDQUANTITY INT, "
 					+ "FOREIGN KEY(EMAIL) REFERENCES USERS(EMAIL), "
 					+ "FOREIGN KEY(PRODID) REFERENCES PRODUCTS(PRODID));");
-		} catch (ClassNotFoundException | SQLException e) {
+		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} 
@@ -46,8 +51,8 @@ public class CartDB {
 		}
 	}
 	
-	public void updateProdQuantity(String prodID, String email, int prodQuantity) {
-		String command = "UPDATE CART SET PRODSELECTEDQUANTITY = " + (prodQuantity) + " WHERE EMAIL = \'" + email + "\' AND PRODID = \'" + prodID + "\'";
+	public void updateProdQuantity(String prodID, String email, int prodQuantity, float prodPrice) {
+		String command = "UPDATE CART SET PRODSELECTEDQUANTITY = " + (prodQuantity) + ", PRODTOTALCOST = " + (prodQuantity*prodPrice) + " WHERE EMAIL = \'" + email + "\' AND PRODID = \'" + prodID + "\'";
 		System.out.println(command);
 		try {
 			s.executeUpdate(command);
@@ -76,10 +81,6 @@ public class CartDB {
 		}
 	}
 	
-	public void insertSelectedProductsOnLoginIntoDB(String email, CartModel chosenProds) {
-		
-	}
-	
 	public void removeProductFromDB(String email, String prodID) {
 		String command = "DELETE FROM CART WHERE EMAIL = \'" +  email + "\' AND PRODID = \'" + prodID + "\'";
 		System.out.println(command);
@@ -93,6 +94,17 @@ public class CartDB {
 	
 	public String getProdID(String prodID) {
 		return prodID;
+	}
+	
+	public void clearCart(String email) throws SQLException {
+		try {
+			String command = "DELETE FROM CART WHERE EMAIL = \'" + email + "\';";
+			s.executeUpdate(command);
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 	
 	public String getProdName(String prodID) throws SQLException {

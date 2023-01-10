@@ -18,6 +18,17 @@ public class SignInServlet extends HttpServlet {
 	public static boolean isAuth;
     public static boolean isLoggedIn;
     public static String userEmail;
+    public static String userAddress;
+    public static String userCountry;
+    public static String userName;
+    public static String userPhoneno;
+    public static String userGender;
+    public static String userName1;
+    public static String userName2;
+
+    
+
+
     /**
      * @see HttpServlet#HttpServlet()
      */
@@ -48,17 +59,32 @@ public class SignInServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
+		try {
 		isLoggedIn = false;
 		UserDB udb = new UserDB();
 		String email = request.getParameter("email");
 		String password = request.getParameter("password");
+		String address = udb.getAddress(email);
+		String country = udb.getCountry(email);
+		String name = udb.getFullName(email);
+		String phoneno = udb.getPhoneno(email);
+		String gender = udb.getGender(email);
+		String name1 = udb.getName(email);
+		String name2 = udb.getName2(email);
 		System.out.println(password);
-		try {
+
 			if(udb.loginCheck(email, password)) {
 				System.out.println("Success");
 				isAuth = false;
 				isLoggedIn = true;
 				userEmail = email;
+				userAddress = address;
+				userCountry = country;
+				userName = name;
+				userPhoneno = phoneno;
+				userGender = gender;
+				userName1 = name1;
+				userName2 = name2;
 //				request.setAttribute("isAuth", isAuth);
 				request.setAttribute("email", email);
 				
@@ -80,6 +106,7 @@ public class SignInServlet extends HttpServlet {
 	}
 	
 	protected void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
 		request.setAttribute("isAuth", isAuth);
 		RequestDispatcher requestDispatcher = request.getRequestDispatcher("/WEB-INF/views/SignIn.jsp");
 		requestDispatcher.forward(request, response);

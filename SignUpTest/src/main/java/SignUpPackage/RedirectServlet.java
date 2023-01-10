@@ -91,7 +91,7 @@ public class RedirectServlet extends HttpServlet {
 					if(cm.getProdID().equals(pID)) {
 						System.out.println("Element is present in the linked list of existing products within the database");
 						cm.setProdSelectedQuantity(cm.getProdSelectedQuantity() + 1);
-						cdb.updateProdQuantity(pID, SignInServlet.userEmail, cm.getProdSelectedQuantity());
+						cdb.updateProdQuantity(pID, SignInServlet.userEmail, cm.getProdSelectedQuantity(), cm.getProdCost());
 //						flag=1;
 						break;
 					}
@@ -101,7 +101,7 @@ public class RedirectServlet extends HttpServlet {
 					if(cm.getProdID().equals(pID)) {
 						System.out.println("Element is present in the linked list");
 						cm.setProdSelectedQuantity(cm.getProdSelectedQuantity() + 1);
-
+						cm.setTotalProdCost(cm.getProdSelectedQuantity() * cm.getProdCost());
 						flag=1;
 						break;
 					}
@@ -115,7 +115,7 @@ public class RedirectServlet extends HttpServlet {
 							pdb.getProdDesc(pID),
 							pdb.getProdPrice(pID),
 							pdb.getProdQuantity(pID),
-							pdb.getProdPrice(pID)*pdb.getProdQuantity(pID), 
+							pdb.getProdPrice(pID)*1, 
 							1,
 							pdb.getProdCategory(pID));
 					 HomeServlet.chosenProds.push(cartmodel);
@@ -129,7 +129,7 @@ public class RedirectServlet extends HttpServlet {
 							pdb.getProdDesc(pID),
 							pdb.getProdPrice(pID),
 							pdb.getProdQuantity(pID),
-							pdb.getProdPrice(pID)*pdb.getProdQuantity(pID), 
+							pdb.getProdPrice(pID)*1, 
 							1,
 							pdb.getProdCategory(pID));
 					cdb.insertIntoCartDB(SignInServlet.userEmail, cartmodel);

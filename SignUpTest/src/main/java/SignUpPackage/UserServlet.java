@@ -62,6 +62,8 @@ public class UserServlet extends HttpServlet {
 		String name1 = request.getParameter("name1");
 		String name2 = request.getParameter("name2");
 		String gender = request.getParameter("radiogroup1");
+		String address = request.getParameter("address");		
+		String phno = request.getParameter("phno");
 		String country = request.getParameter("country");
 		String toc = request.getParameter("cb1");
 		if(toc.equals("on")) toc = "1";
@@ -80,7 +82,7 @@ public class UserServlet extends HttpServlet {
 		else {
 		isPageVisible = false;
 		request.setAttribute("isPageVisible", isPageVisible);
-		UserModel UM = new UserModel(email, newPassword2, name1, name2, gender, country, toc, news);
+		UserModel UM = new UserModel(email, newPassword2, name1, name2, gender, country, toc, news, address, phno);
 		udb.insertUserIntoDB(UM);
 		}
 		

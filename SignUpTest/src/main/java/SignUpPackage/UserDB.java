@@ -15,11 +15,22 @@ public class UserDB {
 			s = con.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
 			s.executeUpdate("CREATE DATABASE IF NOT EXISTS USERDB1");
 			s.executeUpdate("USE USERDB1");
-			s.executeUpdate("CREATE TABLE IF NOT EXISTS USERS (EMAIL VARCHAR(30), PASSWORD VARCHAR(30), NAME1 VARCHAR(30), NAME2 VARCHAR(30), GENDER VARCHAR(10), COUNTRY VARCHAR(30), TOC INT(2), NEWS INT(2))");
+			s.executeUpdate("CREATE TABLE IF NOT EXISTS USERS (EMAIL VARCHAR(30) PRIMARY KEY, "
+					+ "PASSWORD VARCHAR(30), NAME1 VARCHAR(30), NAME2 VARCHAR(30), GENDER VARCHAR(10), "
+					+ "PHONENO VARCHAR(10), ADDRESS VARCHAR(100), COUNTRY VARCHAR(30), TOC INT(2), NEWS INT(2))");
 		} catch (ClassNotFoundException | SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} 
+	}
+	
+	public int noOfExistingUsersInDb() throws SQLException {
+		int len = 0;
+		rs = s.executeQuery("SELECT EMAIL FROM USERS");
+		while(rs.next()) {
+			len++;
+		}
+		return len;
 	}
 	
 	public boolean checkIfUserExistsInDB(String email) {
@@ -57,9 +68,9 @@ public class UserDB {
 		String testName = user1.getName1() + user1.getName2();
 		try {
 			
-			String command = "INSERT INTO USERS VALUES(\"%s\", \"%s\",\"%s\",\"%s\",\"%s\",\"%s\", %s, %s)";
+			String command = "INSERT INTO USERS VALUES(\"%s\", \"%s\",\"%s\",\"%s\",\"%s\",\"%s\",\"%s\",\"%s\", %s, %s)";
 			command = String.format(command, user1.getEmail(), user1.getPassword(), user1.getName1(), 
-					user1.getName2(), user1.getGender(), user1.getCountry(), user1.getToc(),
+					user1.getName2(), user1.getGender(), user1.getPhoneno() ,user1.getAddress(), user1.getCountry(), user1.getToc(),
 					user1.getNews());
 			s.executeUpdate(command);
 			
@@ -105,6 +116,8 @@ public class UserDB {
 		return flag;
 		}
 	}
+
+	
 	
 	public String getName(String email) throws SQLException {
 		String usernamel = "";
@@ -113,5 +126,84 @@ public class UserDB {
 			usernamel = rs.getString(1);	
 		}
 		return usernamel;
+	}	
+	
+	public void setName(String email, String str1) throws SQLException {
+		s.executeUpdate("UPDATE USERS SET NAME1 = \"" + str1 + "\" WHERE EMAIL = \"" + email + "\"");
+	}
+	
+	
+	public String getName2(String email) throws SQLException {
+		String username2 = "";
+		rs = s.executeQuery("SELECT NAME2 FROM USERS WHERE EMAIL = \"" + email + "\"");
+		while(rs.next()) {
+			username2 = rs.getString(1);	
+		}
+		return username2;
+	}
+	
+	public void setName2(String email, String str1) throws SQLException {
+		s.executeUpdate("UPDATE USERS SET NAME2 = \"" + str1 + "\" WHERE EMAIL = \"" + email + "\"");
+	}
+	
+	public String getAddress(String email) throws SQLException {
+		String address = "";
+		rs = s.executeQuery("SELECT ADDRESS FROM USERS WHERE EMAIL = \"" + email + "\"");
+		while(rs.next()) {
+			address = rs.getString(1);	
+		}
+		return address;
+	}
+	
+	public void setAddress(String email, String str1) throws SQLException {
+		s.executeUpdate("UPDATE USERS SET ADDRESS = \"" + str1 + "\" WHERE EMAIL = \"" + email + "\"");
+	}
+	
+	public String getFullName(String email) throws SQLException {
+		String fullName = "";
+		rs = s.executeQuery("SELECT NAME1, NAME2 FROM USERS WHERE EMAIL = \"" + email + "\"");
+		while(rs.next()) {
+			fullName = rs.getString(1) + " " +  rs.getString(2);	
+		}
+		return fullName;
+	}
+	
+	public String getCountry(String email) throws SQLException {
+		String country = "";
+		rs = s.executeQuery("SELECT COUNTRY FROM USERS WHERE EMAIL = \"" + email + "\"");
+		while(rs.next()) {
+			country = rs.getString(1);	
+		}
+		return country;
+	}
+	
+	public void setCountry(String email, String str1) throws SQLException {
+		s.executeUpdate("UPDATE USERS SET COUNTRY = \"" + str1 + "\" WHERE EMAIL = \"" + email + "\"");
+	}
+	
+	public String getGender(String email) throws SQLException {
+		String gender = "";
+		rs = s.executeQuery("SELECT GENDER FROM USERS WHERE EMAIL = \"" + email + "\"");
+		while(rs.next()) {
+			gender = rs.getString(1);	
+		}
+		return gender;
+	}
+	
+	public void setGender(String email, String str1) throws SQLException {
+		s.executeUpdate("UPDATE USERS SET GENDER = \"" + str1 + "\" WHERE EMAIL = \"" + email + "\"");
+	}
+	
+	public String getPhoneno(String email) throws SQLException {
+		String phoneno = "";
+		rs = s.executeQuery("SELECT PHONENO FROM USERS WHERE EMAIL = \"" + email + "\"");
+		while(rs.next()) {
+			phoneno = rs.getString(1);	
+		}
+		return phoneno;
+	}
+	
+	public void setPhoneno(String email, String str1) throws SQLException {
+		s.executeUpdate("UPDATE USERS SET PHONENO = \"" + str1 + "\" WHERE EMAIL = \"" + email + "\"");
 	}
 }

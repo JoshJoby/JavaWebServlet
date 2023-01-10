@@ -2,8 +2,10 @@
     pageEncoding="UTF-8"%>
 <%@page import="SignUpPackage.HomeServlet" %>
 <%@page import="SignUpPackage.SignInServlet" %>
+<%@page import="SignUpPackage.UserDB"  %>
 <%@page import="SignUpPackage.ProdDB"  %>
 <%@page import="SignUpPackage.CartDB"  %>
+<%@page import="SignUpPackage.InvoiceDB"  %>
 <%@page import="java.util.LinkedList" %>
 <%@page import="SignUpPackage.CartModel" %>
 <%@page import="java.sql.SQLException" %>
@@ -11,8 +13,9 @@
 
 
 <%ProdDB pdb = new ProdDB(); 
-CartDB cdb = new CartDB();
-
+UserDB udb = new UserDB();
+CartDB cdb =  new CartDB();
+InvoiceDB idb = new InvoiceDB();
 if(!SignInServlet.isLoggedIn) {
 	System.out.println("Logged out!");
 	HomeServlet.chosenProds.clear();
@@ -20,14 +23,18 @@ if(!SignInServlet.isLoggedIn) {
 	SignInServlet.userEmail = null;
 }
 else if(SignInServlet.userEmail!=null && HomeServlet.chosenProds.size() == 0) {
+	try{
 	cdb.getExistingUserProducts(SignInServlet.userEmail);
 	HomeServlet.chosenProds = (LinkedList<CartModel>) CartDB.existingProds.clone();
+	}catch(Exception e){
+		e.printStackTrace();
+	}
 }
 %>
 
     
 <!doctype html>
-<html class="no-js" lang="en">
+<html lang="en">
     <head> 
         <!-- meta data -->
         <meta charset="utf-8">
@@ -69,6 +76,8 @@ else if(SignInServlet.userEmail!=null && HomeServlet.chosenProds.size() == 0) {
         <!--responsive.css-->
         <link rel="stylesheet" href="assets/css/responsive.css">
         
+        <link rel="stylesheet" href="assets/css/buttonStyles.css">
+        
         <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
         <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
 		
@@ -96,11 +105,15 @@ else if(SignInServlet.userEmail!=null && HomeServlet.chosenProds.size() == 0) {
 		
 		
 		<form id="formCart" action="prod.jsp" method="get"></form>
+		<%if(SignInServlet.isLoggedIn){ %>
 		<form id="formAddToCart" action="Redirect.jsp" method="get"></form>
+		<%}else{ %>
+			<form id="formAddToCart" action="#popup1" method="get"></form>
+			<%} %>
 	
 	
 		<!--welcome-hero start -->
-		<header id="home" class="welcome-hero" >
+		<div id="home">
 
 			<div id="header-carousel" class="carousel slide carousel-fade" data-ride="carousel">
 				<!--/.carousel-indicator -->
@@ -149,12 +162,17 @@ else if(SignInServlet.userEmail!=null && HomeServlet.chosenProds.size() == 0) {
 														 ₹ <%=pdb.getProdPrice("product2")%>
 														</p>
 													</div>
-													<button class="btn-cart welcome-add-cart"  type="submit" name="buttonProdCart" value="product2" form="formAddToCart" >
-													
-													
+													<%if(SignInServlet.isLoggedIn) {%>
+														<button class="btn-cart welcome-add-cart"  type="submit" name="buttonProdCart" value="product2" form="formAddToCart" >		
 														<span class="lnr lnr-plus-circle"></span>
 														add <span>to</span> cart
-													</button>
+														</button>
+													<%} else { %>
+														<button class="btn-cart welcome-add-cart"  type="submit" name="buttonProdCart" value="product2" onclick="window.location.href = '#popup1';" >		
+														<span class="lnr lnr-plus-circle"></span>
+														add <span>to</span> cart
+														</button>
+													<%} %>
 													<button class="btn-cart welcome-add-cart welcome-more-info"  type="submit" name="buttonProd" value="product2" form="formCart">
 														more info
 													</button>
@@ -202,10 +220,7 @@ else if(SignInServlet.userEmail!=null && HomeServlet.chosenProds.size() == 0) {
 												</div><!--/.welcome-hero-txt-->
 											</div><!--/.single-welcome-hero-->
 										</div><!--/.col-->
-										
-										
-        
-										
+			
 										<div class="col-sm-5">
 											<div class="single-welcome-hero">
 												<div class="welcome-hero-img">
@@ -268,32 +283,19 @@ else if(SignInServlet.userEmail!=null && HomeServlet.chosenProds.size() == 0) {
 			<div class="top-area">
 				<div class="header-area">
 					<!-- Start Navigation -->
-				    <nav class="navbar navbar-default bootsnav  navbar-sticky navbar-scrollspy"  data-minus-value-desktop="70" data-minus-value-mobile="55" data-speed="1000">
-
-				        <!-- Start Top Search -->
-				        <div class="top-search">
-				            <div class="container">
-				                <div class="input-group">
-				                    <span class="input-group-addon"><i class="fa fa-search"></i></span>		
-
-				                    <span class="input-group-addon close-search"><i class="fa fa-times"></i></span>
-				                </div>
-				            </div>
-				        </div>
-				        <!-- End Top Search -->
+				    <nav class="navbar navbar-default bootsnav navbar-scrollspy"  data-minus-value-desktop="70" data-minus-value-mobile="55" data-speed="1000">
 
 				        <div class="container">            
 				            <!-- Start Atribute Navigation -->
 				            <div class="attr-nav">
-				                <ul>
-				                	<li class="search">
-				                		<a href="#">
-				                		<p style="font-size: 12px">Search</p>
-				                		</a>
-				                	</li><!--/.search-->				                	
+				                <ul>			                	
 				                	<li class="nav-setting">
+				                	<%if(!(SignInServlet.isLoggedIn)){%>	
 									<a href="SignUp.jsp" class="addMore" title="Sign in!"><p style="font-size: 12px">Sign in</p></a>
+				                	<%}else{ %>
+				                	<a href="dashboard.jsp" class="addMore" title="Sign in!"><p style="font-size: 12px">Dashboard</p></a>
 				                	</li><!--/.search-->
+				                	<%} %>
 				                	<li class="nav-setting">
 				                	
 				                	<%if((boolean)request.getAttribute("isAuth")){%>	
@@ -307,7 +309,11 @@ else if(SignInServlet.userEmail!=null && HomeServlet.chosenProds.size() == 0) {
 				                	 <%}%>	
 				                	</li><!--/.search-->            
 				                    <li class="dropdown">
+				                    	<%if(SignInServlet.isLoggedIn){ %>
 				                        <a href="cart.jsp" >
+				                        <%}else {%>
+				                        <a href="#popup1">
+				                        <%}%>
 				                            <p style="font-size: 12px">Cart</p>
 				                            <%if(HomeServlet.chosenProds.size() != 0){ %>
 												<span class="badge badge-bg-1"><%=HomeServlet.chosenProds.size()%></span>
@@ -348,7 +354,7 @@ else if(SignInServlet.userEmail!=null && HomeServlet.chosenProds.size() == 0) {
 			</div><!-- /.top-area-->
 			<!-- top-area End -->
 
-		</header><!--/.welcome-hero-->
+		</div><!--/.welcome-hero-->
 		<!--welcome-hero end -->
 
 		<!--populer-products start -->
@@ -1718,6 +1724,20 @@ else if(SignInServlet.userEmail!=null && HomeServlet.chosenProds.size() == 0) {
 		</section><!--/newsletter-->	
 		<!--newsletter end -->
 
+		<div id="popup1" class="overlay" style="padding-top:15%;">
+			<div class="popup">
+				<h2>Alert!</h2>
+				&nbsp;
+				<a class="close " href="#">&times;</a>
+				<div class="content">
+					To access the cart, you must log in, so that any changes to the cart will be autosaved.
+					<br><br>
+					<button class="btn-cart" style="margin-left: 40%">
+					<a href="SignUp.jsp" title="Sign in!"><p style="font-size: 15px; color: white">Sign in</p></a>
+					</button>		
+					</div>
+			</div>
+		</div>
 		<!--footer start-->
 		<footer id="footer"  class="footer">
 			<div class="container">

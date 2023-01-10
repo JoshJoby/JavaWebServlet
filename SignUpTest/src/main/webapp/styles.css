@@ -15,11 +15,11 @@ body {
 
 .form_wrapper {
   background: #fff;
-  width: 400px;
+  width: 450px;
   max-width: 100%;
   box-sizing: border-box;
-  padding: 25px;
-  margin: 2.5% auto 0;
+  padding: 20px;
+  margin: 0% auto 0;
   position: relative;
   z-index: 1;
   border-top: 5px solid #f5ba1a;
@@ -99,10 +99,24 @@ body {
   -ms-transition: all 0.3s ease-in-out;
   transition: all 0.3s ease-in-out;
 }
-.form_wrapper input[type=text]:hover, .form_wrapper input[type=email]:hover, .form_wrapper input[type=password]:hover {
+
+.form_wrapper input[type=address]{
+  width: 100%;
+  padding: 8px 10px 9px 35px;
+  height: 70px;
+  border: 1px solid #cccccc;
+  box-sizing: border-box;
+  outline: none;
+  -webkit-transition: all 0.3s ease-in-out;
+  -moz-transition: all 0.3s ease-in-out;
+  -ms-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
+}
+
+.form_wrapper input[type=text]:hover, .form_wrapper input[type=email]:hover, .form_wrapper input[type=password]:hover, .form_wrapper input[type=address]:focus {
   background: #fafafa;
 }
-.form_wrapper input[type=text]:focus, .form_wrapper input[type=email]:focus, .form_wrapper input[type=password]:focus {
+.form_wrapper input[type=text]:focus, .form_wrapper input[type=email]:focus, .form_wrapper input[type=password]:focus, .form_wrapper input[type=address]:focus {
   -webkit-box-shadow: 0 0 2px 1px rgba(255, 169, 0, 0.5);
   -moz-box-shadow: 0 0 2px 1px rgba(255, 169, 0, 0.5);
   box-shadow: 0 0 2px 1px rgba(255, 169, 0, 0.5);

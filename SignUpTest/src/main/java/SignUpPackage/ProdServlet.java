@@ -36,7 +36,15 @@ public class ProdServlet extends HttpServlet {
 //			System.out.println((request.getParameter("buttonProd").toString()));
 			request.setAttribute("product", pName);
 			}
-			else{System.out.println("Button is not clicked!");}
+			else{System.out.println("More Info Button is not clicked!");}
+		
+		if((request.getParameter("buttonNotLoggedIn") == null) ? false : true){
+			System.out.println("Button is clicked! but not logged in");
+			pName = (request.getParameter("buttonNotLoggedIn").toString());
+//			System.out.println((request.getParameter("buttonProd").toString()));
+			request.setAttribute("product", pName);
+			}
+			else{System.out.println("More Info Button is not clicked!");}
 		try {		
 //			pName = HomeServlet.productName;
 //			System.out.println(pName);

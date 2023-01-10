@@ -13,23 +13,20 @@ import java.time.format.DateTimeFormatter;
 import java.util.LinkedList;
 import java.util.Locale;
 
-import SignUpPackage.SignInServlet;
 /**
- * Servlet implementation class SignInServlet
+ * Servlet implementation class RedirectToTransactionsServlet
  */
-@WebServlet("/home.jsp")
-public class HomeServlet extends HttpServlet {
+@WebServlet("/RedirectToTransactionPage.jsp")
+public class RedirectToTransactionsServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	public static boolean isAuth;
-	public static String productName;
-   	public static LinkedList<CartModel> chosenProds = new LinkedList<CartModel>();
-	public static String transactionID =(int)((Math.random()*(999999-100000) + 100000))+"";
-	public static String transactionDate = DateTimeFormatter.ofPattern("yyyy-MM-dd", Locale.ENGLISH).format(LocalDateTime.now());
+    public static LinkedList<InvoiceModel> selectedProds = new LinkedList<InvoiceModel>();
+    public static String subtotal, tax, shipping, total;
+
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public HomeServlet() {
-    	ProdDB pdb = new ProdDB();
+    public RedirectToTransactionsServlet() {
+        super();
         // TODO Auto-generated constructor stub
     }
 
@@ -38,54 +35,59 @@ public class HomeServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-
 		try {
 			processRequest(request, response);
 		} catch (ServletException | IOException | SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}	
-		response.getWriter().append("Served at: ").append(request.getContextPath());
-
+		}
 	}
-
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		if((request.getAttribute("buttonProd") == null) ? false : true){
-		System.out.println("Button is clicked!");
-		request.setAttribute("product", "product1");
-		}
-		else{System.out.println("Button is not clicked!");}	
 		try {
 			processRequest(request, response);
 		} catch (ServletException | IOException | SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}	
+		}
 	}
 	
 	protected void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, SQLException {
-
-		
-
-		
-		isAuth = SignInServlet.isLoggedIn;
-		String email = SignInServlet.userEmail;
-		String name;
-		UserDB udb = new UserDB();
+		InvoiceDB idb = new InvoiceDB();
 		CartDB cdb = new CartDB();
-		name = udb.getName(email);
-		System.out.print(isAuth);
-//		productName = request.getAttribute("product").toString();
-		request.setAttribute("isAuth", isAuth);
-		request.setAttribute("name", name);
-		RequestDispatcher requestDispatcher = request.getRequestDispatcher("/WEB-INF/views/home.jsp");
+		if((request.getParameter("buttonTransactions") == null) ? false : true){
+			for(CartModel cm : HomeServlet.chosenProds) {
+				InvoiceModel invoiceModel = new InvoiceModel(
+						HomeServlet.transactionID,
+						(SignInServlet.userEmail),
+						cm.getProdID(),
+						(SignInServlet.userName),
+						(SignInServlet.userAddress),
+						(SignInServlet.userCountry),
+						HomeServlet.transactionDate,
+						cm.getProdName(),
+						cm.getProdCost(),
+						cm.getProdCategory(),
+						cm.getProdSelectedQuantity(),
+						cm.getTotalProdCost()
+						);
+				selectedProds.push(invoiceModel);
+			}
+			idb.insertIntoCartDB(selectedProds);
+			HomeServlet.transactionID =(int)((Math.random()*(999999-100000) + 100000))+"";
+			System.out.println("SUCCESS !");
+			HomeServlet.chosenProds.clear();
+			CartDB.existingProds.clear();
+			cdb.clearCart(SignInServlet.userEmail);
+		}
+		
+		RequestDispatcher requestDispatcher = request.getRequestDispatcher("/WEB-INF/views/RedirectToTransactionPage.jsp");
 		requestDispatcher.forward(request, response);
-		return;
+		return;	
 	}
 
 }

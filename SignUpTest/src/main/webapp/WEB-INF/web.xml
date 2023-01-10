@@ -69,4 +69,34 @@
     <servlet-name>ResultServlet</servlet-name>
     <url-pattern>/ResultServlet</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>InvoiceServlet</display-name>
+    <servlet-name>InvoiceServlet</servlet-name>
+    <servlet-class>SignUpPackage.InvoiceServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>InvoiceServlet</servlet-name>
+    <url-pattern>/InvoiceServlet</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>RedirectToTransactionsServlet</display-name>
+    <servlet-name>RedirectToTransactionsServlet</servlet-name>
+    <servlet-class>SignUpPackage.RedirectToTransactionsServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>RedirectToTransactionsServlet</servlet-name>
+    <url-pattern>/RedirectToTransactionsServlet</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>DashboardServlet</display-name>
+    <servlet-name>DashboardServlet</servlet-name>
+    <servlet-class>SignUpPackage.DashboardServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>DashboardServlet</servlet-name>
+    <url-pattern>/DashboardServlet</url-pattern>
+  </servlet-mapping>
 </web-app>
